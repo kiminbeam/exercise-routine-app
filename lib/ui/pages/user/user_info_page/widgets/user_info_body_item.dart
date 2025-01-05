@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../data/week_information_repository.dart';
+import '../../../../../data/repository/week_information_repository.dart';
 
 
-class WeekItem extends StatelessWidget {
+class UserInfoBodyItem extends StatelessWidget {
   final WeekInformation weekInformation;
 
-  WeekItem({required this.weekInformation});
+  UserInfoBodyItem({required this.weekInformation});
 
   @override
   Widget build(BuildContext context) {
-    bool categoryOver = false;
+
 
     List<Exercise> displayList = weekInformation.exerciseList.take(3).toList();
 
@@ -26,14 +26,14 @@ class WeekItem extends StatelessWidget {
             "${weekInformation.dayOfTheWeek}",
             style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
           ),
-          const SizedBox(width: 70.0),
+          const SizedBox(width: 40.0),
           Wrap(
             spacing: 8.0, // 각 항목 사이의 간격
             children: displayList
                 .map((exercise) => Padding(
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Text(
-                        exercise.exerciseName,
+                        "( " + exercise.exerciseName + " ) ",
                         style: TextStyle(fontSize: 25, color: Colors.grey),
                       ),
                     ))
