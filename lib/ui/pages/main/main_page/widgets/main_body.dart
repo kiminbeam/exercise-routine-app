@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../data/repository/week_information_repository.dart';
+import '../../../../../data/repository/week_info_repository.dart';
 import 'main_body_item.dart';
 
 class MainPageBody extends StatelessWidget {

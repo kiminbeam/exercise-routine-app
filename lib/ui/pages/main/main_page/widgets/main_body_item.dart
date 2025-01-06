@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../data/repository/week_information_repository.dart';
+import '../../../../../data/repository/week_info_repository.dart';
 
 class MainBodyItem extends StatelessWidget {
   final WeekInformation weekInformation;
@@ -9,11 +9,9 @@ class MainBodyItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     int printCount = 2;
 
     double screenWidth = MediaQuery.of(context).size.width;
-
 
     // 시간 날 때 아래 조건문 > 화면 크기에 따라 값을 도출해주는 메서드로 분리
     if (screenWidth >= 500) {
@@ -29,9 +27,8 @@ class MainBodyItem extends StatelessWidget {
       printCount = 6;
     }
 
-
-
-    List<Exercise> displayList = weekInformation.exerciseList.take(printCount).toList();
+    List<Exercise> displayList =
+        weekInformation.exerciseList.take(printCount).toList();
     return InkWell(
       onTap: () {
         print("${weekInformation.dayOfTheWeek}요일 버튼 클릭됨");
@@ -55,7 +52,6 @@ class MainBodyItem extends StatelessWidget {
             Container(
               child: Row(
                 children: [
-
                   Wrap(
                     spacing: 8.0, // 각 항목 사이의 간격
                     children: displayList

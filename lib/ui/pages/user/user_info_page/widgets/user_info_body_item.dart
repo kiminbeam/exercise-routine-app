@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
 //
-// import '../../../../../data/repository/week_information_repository.dart';
+// import '../../../../../data/repository/week_info_repository.dart';
 //
 //
 // class UserInfoBodyItem extends StatelessWidget {

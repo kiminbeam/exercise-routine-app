@@ -1,5 +1,5 @@
-class WeekInformationRepository {
-  const WeekInformationRepository();
+class WeekInfoRepository {
+  const WeekInfoRepository();
 
   Future<List<WeekInformation>> takeWeekInformaition() async {
     List<WeekInformation> body = await takeWeekInfo();
@@ -35,7 +35,14 @@ Exercise exercise6 = Exercise('상반신');
 
 List<Exercise> list1 = [exercise1, exercise2, exercise3, exercise4];
 List<Exercise> list2 = [exercise1, exercise2];
-List<Exercise> list3 = [exercise1, exercise2, exercise3, exercise4, exercise5, exercise6];
+List<Exercise> list3 = [
+  exercise1,
+  exercise2,
+  exercise3,
+  exercise4,
+  exercise5,
+  exercise6
+];
 // 샘플 데이터
 List<WeekInformation> weekList = [
   WeekInformation(dayOfTheWeek: '월', exerciseList: list1),

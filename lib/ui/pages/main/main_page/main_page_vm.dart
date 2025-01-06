@@ -1,5 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectsampledata/data/repository/week_information_repository.dart';
+import 'package:projectsampledata/data/repository/week_info_repository.dart';
 
 class MainPageModel {
   List<WeekInformation> weekInformationList;
@@ -7,12 +7,13 @@ class MainPageModel {
   MainPageModel(this.weekInformationList);
 }
 
-final mainPageProvider = NotifierProvider<WeekInformationVM, MainPageModel?>(() {
+final mainPageProvider =
+    NotifierProvider<WeekInformationVM, MainPageModel?>(() {
   return WeekInformationVM();
 });
 
 class WeekInformationVM extends Notifier<MainPageModel?> {
-  final weekInformationRepository = const WeekInformationRepository();
+  final weekInformationRepository = const WeekInfoRepository();
 
   @override
   MainPageModel? build() {
