@@ -18,7 +18,12 @@ class MainPage extends ConsumerWidget {
       return Scaffold(
         endDrawer: CustomNavigation(scaffoldKey),
         appBar: AppBar(
-          title: const Text('기본 홈'),
+          backgroundColor: Colors.pink[100],
+          iconTheme: IconThemeData(color: Colors.white),
+          title: const Text(
+            '기본 홈',
+            style: TextStyle(color: Colors.white),
+          ),
           centerTitle: true,
           bottom: const PreferredSize(
             preferredSize: Size.fromHeight(0.5),

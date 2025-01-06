@@ -36,19 +36,22 @@ class MainBodyItem extends StatelessWidget {
       child: Container(
         height: 100.0,
         padding: const EdgeInsets.all(16.0),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.black, width: 2),
-          borderRadius: BorderRadius.circular(10),
-        ),
+        // decoration: BoxDecoration(
+        //   border: Border.all(color: Colors.black, width: 2),
+        //   borderRadius: BorderRadius.circular(10),
+        // ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center, // 수직 가운데 정렬
           children: [
             SizedBox(width: 20),
             Text(
               "${weekInformation.dayOfTheWeek}",
-              style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
             ),
-            const SizedBox(width: 40.0),
+            const SizedBox(width: 20.0),
             Container(
               child: Row(
                 children: [
@@ -69,7 +72,7 @@ class MainBodyItem extends StatelessWidget {
                   ),
                   listSizeCheck(printCount),
                   SizedBox(
-                    width: 20,
+                    width: 10,
                   )
                 ],
               ),

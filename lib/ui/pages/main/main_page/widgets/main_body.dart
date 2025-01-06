@@ -13,39 +13,51 @@ class MainPageBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.only(top: 60, bottom: 60),
-      itemBuilder: (context, index) {
-        return Column(
-          children: [
-            SizedBox(
-              height: 5,
-            ),
-            Row(
+    return Scaffold(
+      backgroundColor: Colors.white, // 배경색을 회색으로 설정
+      body: ListView.builder(
+        padding: const EdgeInsets.only(top: 60, bottom: 60),
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
               children: [
                 SizedBox(
-                  width: 10,
+                  height: 5,
                 ),
-                Expanded(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black, width: 2),
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                    child: MainBodyItem(
-                      weekInformation: list[index],
-                    ),
+                Card(
+                  color: Colors.pink[50], // Card의 배경색을 회색으로 설정
+                  shape: RoundedRectangleBorder(
+                    // side: BorderSide(
+                    //   color: Colors.white, // 테두리 색상
+                    //   width: 2.0, // 테두리 두께
+                    // ),
+                    borderRadius: BorderRadius.circular(10.0), // 라운드 처리된 테두리
                   ),
-                ),
-                SizedBox(
-                  width: 10,
+                  child: Row(
+                    children: [
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Expanded(
+                        child: Container(
+                          child: MainBodyItem(
+                            weekInformation: list[index],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-          ],
-        );
-      },
-      itemCount: list.length,
+          );
+        },
+        itemCount: list.length,
+      ),
     );
   }
 }
