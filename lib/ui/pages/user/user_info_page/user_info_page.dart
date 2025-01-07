@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectsampledata/ui/pages/user/user_info_page/user_info_vm.dart';
 import 'package:projectsampledata/ui/pages/user/user_info_page/widgets/user_info_body.dart';
+
+import '../../../common_widgets/custom_navigator.dart';
 
 class UserInfoPage extends ConsumerWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -15,11 +16,14 @@ class UserInfoPage extends ConsumerWidget {
       return Center(child: CircularProgressIndicator());
     } else {
       return Scaffold(
+        endDrawer: CustomNavigation(scaffoldKey),
+        backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text('사용자 정보'),
           centerTitle: true,
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
+            color: Colors.white,
             onPressed: () {
               Navigator.pop(context);
             },

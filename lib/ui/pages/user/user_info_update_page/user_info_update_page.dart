@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:projectsampledata/ui/pages/user/user_info_update_page/widgets/user_info_update_body.dart';
 
+import '../../../common_widgets/custom_navigator.dart';
+
 class UserInfoUpdatePage extends StatelessWidget {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
+
   final username = TextEditingController();
   final password = TextEditingController();
   final email = TextEditingController();
@@ -16,6 +20,7 @@ class UserInfoUpdatePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      endDrawer: CustomNavigation(scaffoldKey),
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.black,
@@ -24,17 +29,14 @@ class UserInfoUpdatePage extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.menu, color: Colors.white),
-            onPressed: () {},
-          )
-        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: [
+            SizedBox(
+              height: 40,
+            ),
             UserInfoUpdateBody(
                 controller: username, labelText: "ID 입력", icon: Icons.person),
             SizedBox(height: 25),
@@ -65,7 +67,7 @@ class UserInfoUpdatePage extends StatelessWidget {
                 controller: weight,
                 labelText: "몸무게 입력해 주세요.",
                 icon: Icons.monitor_weight),
-            SizedBox(height: 25),
+            SizedBox(height: 50),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

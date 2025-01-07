@@ -25,7 +25,7 @@ class UserInfoBody extends StatelessWidget {
     return SingleChildScrollView(
       child: Container(
         width: double.infinity, // 부모 Container의 너비를 최대화합니다.
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           mainAxisSize: MainAxisSize.min, // Column의 크기를 자식 크기로 제한합니다.
           mainAxisAlignment: MainAxisAlignment.center,
@@ -34,20 +34,10 @@ class UserInfoBody extends StatelessWidget {
             SizedBox(
               height: 100,
             ),
-            InkWell(
-                onTap: () {
-                  print("회원 정보 수정 버튼 클릭됨");
-                },
-                child: UserInfoBodyWidget(
-                  text: "회원 정보 수정하기",
-                  fontSize: 35,
-                )),
-            SizedBox(
-              height: 200,
-            ),
             UserInfoBodyWidget(
               text: "신장 : $userHeight",
               fontSize: 30,
+              border: true,
             ),
             SizedBox(
               height: 50,
@@ -55,18 +45,40 @@ class UserInfoBody extends StatelessWidget {
             UserInfoBodyWidget(
               text: "몸무게 : $userWeight",
               fontSize: 30,
+              border: true,
             ),
             SizedBox(
               height: 50,
             ),
-            InkWell(
+            Card(
+              elevation: 4,
+              child: InkWell(
+                  onTap: () {
+                    print("회원 정보 수정 버튼 클릭됨");
+                  },
+                  child: UserInfoBodyWidget(
+                    text: "회원 정보 수정하기",
+                    fontSize: 30,
+                  )),
+            ),
+            SizedBox(
+              height: 150,
+            ),
+            Card(
+              elevation: 4,
+              child: InkWell(
                 onTap: () {
                   print("로그아웃 버튼 클릭됨");
                 },
                 child: UserInfoBodyWidget(
                   text: "로그 아웃",
                   fontSize: 30,
-                )),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 100,
+            ),
           ],
         ),
       ),
@@ -77,25 +89,45 @@ class UserInfoBody extends StatelessWidget {
 class UserInfoBodyWidget extends StatelessWidget {
   String text;
   double fontSize;
+  bool border;
 
-  UserInfoBodyWidget({required this.text, this.fontSize = 20});
+  UserInfoBodyWidget(
+      {required this.text, this.fontSize = 20, this.border = false});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      constraints: BoxConstraints(
-        minWidth: double.infinity,
-      ),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black, width: 2),
-        borderRadius: BorderRadius.circular(10.0),
-      ),
-      child: Text(
-        "${text}",
-        style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),
-        textAlign: TextAlign.center, // 이 부분을 추가하여 텍스트를 가운데 정렬합니다.
-      ),
-    );
+    if (border) {
+      return Container(
+        padding: const EdgeInsets.all(20.0),
+        constraints: BoxConstraints(
+          minWidth: double.infinity,
+        ),
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black, width: 2),
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Text(
+          "${text}",
+          style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center, // 이 부분을 추가하여 텍스트를 가운데 정렬합니다.
+        ),
+      );
+    } else {
+      return Container(
+        padding: const EdgeInsets.all(20.0),
+        constraints: BoxConstraints(
+          minWidth: double.infinity,
+        ),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Text(
+          "${text}",
+          style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center, // 이 부분을 추가하여 텍스트를 가운데 정렬합니다.
+        ),
+      );
+    }
   }
 }
