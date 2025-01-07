@@ -24,9 +24,12 @@ class MainPageBody extends StatelessWidget {
               children: [
                 Card(
                   color: Colors.white,
-                  elevation: 4,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0), // 라운드 처리된 테두리
+                    side: BorderSide(
+                      color: Colors.white, // 테두리 색상
+                      width: 1.0, // 테두리 두께
+                    ),
+                    borderRadius: BorderRadius.circular(10.0), // 라운드 처리된 테두리
                   ),
                   child: Row(
                     children: [

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectsampledata/ui/pages/user/plan_update_page/plan_update_page.dart';
-import '_core/constants/theme.dart';
+import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/add_exercise_detail_page.dart';
+import 'package:projectsampledata/ui/pages/main/main_page/main_page.dart';
+import 'package:projectsampledata/ui/pages/week/week_detail_page/list_detail_of_day_page.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -13,10 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: PlanUpdatePage(),
-        theme: ThemeData(appBarTheme: appBarTheme()) // 정의한 AppBarTheme 적용 ),
-        );
+      debugShowCheckedModeBanner: false,
+      home: ListDetailOfDayPage(),
+      // home: AddExerciseDetailPage(),
+    );
   }
 }
 

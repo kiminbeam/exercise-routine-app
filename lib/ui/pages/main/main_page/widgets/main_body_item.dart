@@ -38,7 +38,7 @@ class MainBodyItem extends StatelessWidget {
               style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
-                  color: Colors.black),
+                  color: Colors.grey[700]),
             ),
             const SizedBox(width: 40.0),
             Container(
