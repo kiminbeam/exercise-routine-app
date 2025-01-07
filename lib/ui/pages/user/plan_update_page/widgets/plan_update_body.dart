@@ -40,6 +40,8 @@ class PlanUpdateBody extends StatelessWidget {
           ),
         ),
         prefixIcon: Icon(icon, color: Colors.grey),
+        fillColor: Colors.white,
+        filled: true,
       ),
     );
   }

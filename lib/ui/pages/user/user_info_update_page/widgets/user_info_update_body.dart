@@ -17,42 +17,47 @@ class UserInfoUpdateBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      obscureText: obscureText,
-      decoration: InputDecoration(
-        labelText: labelText,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          borderSide: BorderSide(
-            color: Colors.blueAccent,
-            width: 2.0,
+    return Material(
+      elevation: 4,
+      borderRadius: BorderRadius.circular(8.0),
+      color: Colors.white,
+      child: TextFormField(
+        controller: controller,
+        obscureText: obscureText,
+        decoration: InputDecoration(
+          labelText: labelText,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
           ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
-          borderSide: BorderSide(
-            color: Colors.grey,
-            width: 1.0,
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: BorderSide(
+              color: Colors.blueAccent,
+              width: 2.0,
+            ),
           ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+            borderSide: BorderSide(
+              color: Colors.grey,
+              width: 1.0,
+            ),
+          ),
+          prefixIcon: Icon(icon, color: Colors.grey),
         ),
-        prefixIcon: Icon(icon, color: Colors.grey),
-      ),
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return "이 필드는 비워둘 수 없습니다.";
-        }
-        if (pwController != null && controller != pwController) {
-          // 비밀번호 확인이 필요한 필드에서만 비교 실시
-          if (controller.text != pwController!.text) {
-            return "비밀번호가 일치하지 않습니다.";
+        validator: (value) {
+          if (value == null || value.isEmpty) {
+            return "이 필드는 비워둘 수 없습니다.";
           }
-        }
-        return null;
-      },
+          if (pwController != null && controller != pwController) {
+            // 비밀번호 확인이 필요한 필드에서만 비교 실시
+            if (controller.text != pwController!.text) {
+              return "비밀번호가 일치하지 않습니다.";
+            }
+          }
+          return null;
+        },
+      ),
     );
   }
 }
