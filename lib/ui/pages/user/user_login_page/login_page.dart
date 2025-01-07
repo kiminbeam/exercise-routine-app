@@ -4,32 +4,40 @@ import 'package:projectsampledata/ui/pages/user/user_login_page/widgets/login_bo
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double deviceWidth = MediaQuery.of(context).size.width;
     double deviceHeight = MediaQuery.of(context).size.height;
-
-    double widthRatio = deviceWidth / 375;
     double heightRatio = deviceHeight / 812;
 
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.black,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
+            color: Colors.white,
           ),
           onPressed: () {},
         ),
         title: Container(
-          margin: EdgeInsets.only(left: widthRatio * 104),
           child: Text(
             "로그인",
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 16,
             ),
           ),
         ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.menu),
+            color: Colors.white,
+            onPressed: () {},
+          )
+        ],
       ),
-      body: LoginBody(heightRatio: heightRatio, widthRatio: widthRatio),
+
+      body: LoginBody(heightRatio: heightRatio),
     );
   }
 }

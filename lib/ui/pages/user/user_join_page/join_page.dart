@@ -4,32 +4,40 @@ import 'package:projectsampledata/ui/pages/user/user_join_page/widgets/join_body
 class JoinPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double deviceWidth = MediaQuery.of(context).size.width;
     double deviceHeight = MediaQuery.of(context).size.height;
-
-    double widthRatio = deviceWidth / 375;
     double heightRatio = deviceHeight / 812;
 
-    return Scaffold(
+    return Scaffold(backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.black,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
+            color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context, "/join");
+          },
         ),
         title: Container(
-          margin: EdgeInsets.only(left: widthRatio * 104),
           child: Text(
             "회원가입",
             style: TextStyle(
-              color: Colors.black,
+              color: Colors.white,
               fontSize: 16,
             ),
           ),
         ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.menu),
+            color: Colors.white,
+            onPressed: () {},
+          )
+        ],
       ),
-      body: JoinBody(heightRatio: heightRatio, widthRatio: widthRatio),
+      body: JoinBody(heightRatio: heightRatio),
     );
   }
 }
