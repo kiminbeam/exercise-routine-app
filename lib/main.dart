@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectsampledata/ui/pages/main/main_page/main_page.dart';
+import 'package:projectsampledata/ui/pages/user/user_info_page/user_info_page.dart';
+
+import '_core/constants/theme.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -12,9 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MainPage(),
-    );
+        debugShowCheckedModeBanner: false,
+        home: UserInfoPage(),
+        theme: ThemeData(appBarTheme: appBarTheme()) // 정의한 AppBarTheme 적용 ),
+        );
   }
 }
 

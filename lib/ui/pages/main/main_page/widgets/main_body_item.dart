@@ -9,23 +9,12 @@ class MainBodyItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int printCount = 2;
+    int printCount = 0;
 
     double screenWidth = MediaQuery.of(context).size.width;
 
     // 시간 날 때 아래 조건문 > 화면 크기에 따라 값을 도출해주는 메서드로 분리
-    if (screenWidth >= 500) {
-      printCount = 3;
-    }
-    if (screenWidth >= 600) {
-      printCount = 4;
-    }
-    if (screenWidth >= 700) {
-      printCount = 5;
-    }
-    if (screenWidth >= 800) {
-      printCount = 6;
-    }
+    printCount = screenWidthCalculate(screenWidth, printCount);
 
     List<Exercise> displayList =
         weekInformation.exerciseList.take(printCount).toList();
@@ -35,7 +24,7 @@ class MainBodyItem extends StatelessWidget {
       },
       child: Container(
         height: 100.0,
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(20.0),
         // decoration: BoxDecoration(
         //   border: Border.all(color: Colors.black, width: 2),
         //   borderRadius: BorderRadius.circular(10),
@@ -49,9 +38,9 @@ class MainBodyItem extends StatelessWidget {
               style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white),
+                  color: Colors.black),
             ),
-            const SizedBox(width: 20.0),
+            const SizedBox(width: 40.0),
             Container(
               child: Row(
                 children: [
@@ -81,6 +70,28 @@ class MainBodyItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  int screenWidthCalculate(double screenWidth, int printCount) {
+    if (screenWidth >= 300) {
+      printCount = 1;
+    }
+    if (screenWidth >= 400) {
+      printCount = 2;
+    }
+    if (screenWidth >= 500) {
+      printCount = 3;
+    }
+    if (screenWidth >= 600) {
+      printCount = 4;
+    }
+    if (screenWidth >= 700) {
+      printCount = 5;
+    }
+    if (screenWidth >= 800) {
+      printCount = 6;
+    }
+    return printCount;
   }
 
   Builder listSizeCheck(int printCount) {

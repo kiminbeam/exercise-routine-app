@@ -8,7 +8,6 @@ class CustomNavigation extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
     return Container(
       width: getDrawerWidth(context),
       height: double.infinity,
@@ -19,8 +18,9 @@ class CustomNavigation extends ConsumerWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 50,),
-
+              SizedBox(
+                height: 50,
+              ),
               TextButton(
                 onPressed: () {
                   print("마이페이지 클릭됨");
@@ -39,6 +39,9 @@ class CustomNavigation extends ConsumerWidget {
               const Divider(),
               TextButton(
                 onPressed: () {
+                  // 햄버거 수동으로 닫아주기
+                  // scaffoldKey.currentState?.openEnDrawer();
+                  // Navigator.popAndPushNamed(scaffoldKey.cuurentContext!, "/login");
                   print("주간 계획 클릭됨");
                 },
                 child: const Text(
