@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectsampledata/ui/pages/user/user_info_page/user_info_page.dart';
+import 'package:projectsampledata/ui/pages/user/plan_update_page/plan_update_page.dart';
 
 import '_core/constants/theme.dart';
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: UserInfoPage(),
+        home: PlanUpdatePage(),
         theme: ThemeData(appBarTheme: appBarTheme()) // 정의한 AppBarTheme 적용 ),
         );
   }
