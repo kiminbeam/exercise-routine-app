@@ -11,7 +11,7 @@ class CustomNavigation extends ConsumerWidget {
     return Container(
       width: getDrawerWidth(context),
       height: double.infinity,
-      color: Colors.white,
+      color: Colors.black,
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -32,7 +32,7 @@ class CustomNavigation extends ConsumerWidget {
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black54,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -49,7 +49,7 @@ class CustomNavigation extends ConsumerWidget {
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black54,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -63,7 +63,7 @@ class CustomNavigation extends ConsumerWidget {
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
-                    color: Colors.black54,
+                    color: Colors.white,
                   ),
                 ),
               ),
