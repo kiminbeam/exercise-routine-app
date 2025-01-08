@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectsampledata/data/gvm/session_gvm.dart';
 
-class LoginBody extends StatelessWidget {
-  const LoginBody({
+class LoginBody extends ConsumerWidget {
+  final double heightRatio;
+   LoginBody({
     super.key,
     required this.heightRatio,
   });
 
-  final double heightRatio;
+  final _username = TextEditingController();
+  final _password = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
+  Widget build(BuildContext context,WidgetRef ref) {
+    SessionGvm gvm = ref.read(sessionProvider.notifier);
 
+    return Padding(
       padding: EdgeInsets.all(20.0),
       child: ListView(
         children: [
@@ -47,7 +52,7 @@ class LoginBody extends StatelessWidget {
                     ),
                   contentPadding: EdgeInsets.only(left: 10),
                 ),
-                // controller: ,
+                controller: _username,
               ),
             ),
           SizedBox(height: 20,),
@@ -84,7 +89,7 @@ class LoginBody extends StatelessWidget {
                 ),
                 contentPadding: EdgeInsets.only(left: 10),
               ),
-              // controller: ,
+               controller: _password,
             ),
           ),
           SizedBox(height: 20,),
@@ -101,7 +106,9 @@ class LoginBody extends StatelessWidget {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                      gvm.login(_username.text.trim(), _password.text.trim());
+                },
                 child: Container(
                   alignment: Alignment.center,
                   child: Text(

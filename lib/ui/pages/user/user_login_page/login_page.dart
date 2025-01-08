@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectsampledata/data/gvm/session_gvm.dart';
 import 'package:projectsampledata/ui/pages/user/user_login_page/widgets/login_body.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     double deviceHeight = MediaQuery.of(context).size.height;
     double heightRatio = deviceHeight / 812;
 
