@@ -1,0 +1,3 @@
+class UserInfoUpdateRepository {
+  const UserInfoUpdateRepository();
+}
