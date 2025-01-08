@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../data/repository/week_info_repository.dart';
+import '../main_page_vm.dart';
 import 'main_body_item.dart';
 
 class MainPageBody extends StatelessWidget {
@@ -9,7 +9,7 @@ class MainPageBody extends StatelessWidget {
     required this.list,
   });
 
-  final List<WeekInformation> list;
+  final List<MainPageWeekInfo> list;
 
   @override
   Widget build(BuildContext context) {
