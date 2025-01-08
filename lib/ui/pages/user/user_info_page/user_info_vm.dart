@@ -7,11 +7,27 @@ class UserInfoModel {
   double weight;
   double height;
 
+  UserInfoModel({
+    required this.id,
+    required this.username,
+    required this.weight,
+    required this.height,
+  });
+
   UserInfoModel.fromMap(Map<String, dynamic> map)
       : id = map["id"],
         username = map["username"] ?? '',
         weight = map["weight"] ?? 0,
+        // toDouble()
         height = map["height"] ?? 0;
+
+  UserInfoModel copyWith({String? username, double? weight, double? height}) {
+    return UserInfoModel(
+        id: this.id,
+        username: username ?? this.username,
+        weight: weight ?? this.weight,
+        height: height ?? this.height);
+  }
 }
 
 final userInfoProvider =
@@ -35,5 +51,13 @@ class UserInfoVM extends Notifier<UserInfoModel?> {
       return;
     }
     state = UserInfoModel.fromMap(responseBody["response"]);
+  }
+
+  void updateUserInfo(Map<String, dynamic> updateData) {
+    state = state!.copyWith(
+      username: updateData["username"],
+      weight: updateData["weight"],
+      height: updateData["height"],
+    );
   }
 }
