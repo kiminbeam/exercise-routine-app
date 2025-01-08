@@ -6,7 +6,7 @@ class WeekInfoRepository {
   const WeekInfoRepository();
 
   Future<Map<String, dynamic>> takeWeekInformaition() async {
-    Response response = await dio.get("/plan/user/1");
+    Response response = await dio.get("/plan/user");
     Map<String, dynamic> body = response.data;
     return body;
   }
