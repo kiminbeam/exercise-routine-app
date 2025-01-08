@@ -10,8 +10,6 @@ class UserInfoRepository {
   }
 }
 
-
-
 // 아래는 샘플 데이터. 언제든지 변경될 수 있음
 class User {
   int id;
@@ -20,12 +18,12 @@ class User {
   double? weight;
 
   User({required this.id, required this.username, this.height, this.weight});
+
+  static fromMap(Map<String, dynamic> map) {}
 }
 
-
-
 Future<Response> findUser() async {
-  final user = {"id": 1, "username": "ssar", "weight": 50, "height":150};
+  final user = {"id": 1, "username": "ssar", "weight": 50, "height": 150};
 
   Map<String, dynamic> responseBody = {
     'success': true,
