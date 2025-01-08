@@ -63,14 +63,6 @@ class SessionGvm extends Notifier<SessionUser> {
 // 회원가입
   Future<void> join(String username, String password, String rePassword,
       String email, String height, String weight) async {
-    final body = {
-      "username": username,
-      "password": password,
-      "rePassowrd": rePassword,
-      "email": email,
-      "height": height,
-      "weight": weight
-    };
 
     if (!(password == rePassword)) {
       ScaffoldMessenger.of(mContext).showSnackBar(
@@ -78,7 +70,6 @@ class SessionGvm extends Notifier<SessionUser> {
       );
       return;
     }
-
     if (double.tryParse(height) == null) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("회원가입 실패 :신장을 잘못입력하였습니다.")),
@@ -92,8 +83,18 @@ class SessionGvm extends Notifier<SessionUser> {
       return;
     }
 
+
     int ss = (double.parse(height) * 10).toInt();
     int sd = (double.parse(weight) * 1000).toInt();
+
+    final body = {
+      "username": username,
+      "password": password,
+      "rePassowrd": rePassword,
+      "email": email,
+      "height": ss,
+      "weight": sd
+    };
 
     Map<String, dynamic> responseBody = await userRepository.save(body);
     if (!responseBody["success"]) {
