@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../data/repository/week_info_repository.dart';
+import '../main_page_vm.dart';
 
 class MainBodyItem extends StatelessWidget {
-  final WeekInformation weekInformation;
+  final MainPageWeekInfo weekInformation;
 
   MainBodyItem({required this.weekInformation});
 
@@ -16,11 +16,11 @@ class MainBodyItem extends StatelessWidget {
     // 시간 날 때 아래 조건문 > 화면 크기에 따라 값을 도출해주는 메서드로 분리
     printCount = screenWidthCalculate(screenWidth, printCount);
 
-    List<Exercise> displayList =
-        weekInformation.exerciseList.take(printCount).toList();
+    List<String> displayList =
+        weekInformation.fitnessList.take(printCount).toList();
     return InkWell(
       onTap: () {
-        print("${weekInformation.dayOfTheWeek}요일 버튼 클릭됨");
+        print("${weekInformation.dayOfWeek}요일 버튼 클릭됨");
       },
       child: Container(
         height: 100.0,
@@ -34,7 +34,7 @@ class MainBodyItem extends StatelessWidget {
           children: [
             SizedBox(width: 20),
             Text(
-              "${weekInformation.dayOfTheWeek}",
+              "${weekInformation.dayOfWeek}",
               style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
@@ -48,10 +48,10 @@ class MainBodyItem extends StatelessWidget {
                     spacing: 8.0, // 각 항목 사이의 간격
                     children: displayList
                         .map(
-                          (exercise) => Padding(
+                          (fitness) => Padding(
                             padding: const EdgeInsets.only(right: 8.0),
                             child: Text(
-                              "( " + exercise.exerciseName + " ) ",
+                              "( " + fitness + " ) ",
                               style:
                                   TextStyle(fontSize: 25, color: Colors.grey),
                             ),
@@ -97,7 +97,7 @@ class MainBodyItem extends StatelessWidget {
   Builder listSizeCheck(int printCount) {
     return Builder(
       builder: (context) {
-        if (weekInformation.exerciseList.length > printCount) {
+        if (weekInformation.fitnessList.length > printCount) {
           return Icon(Icons.more_horiz, size: 40.0, color: Colors.grey);
         }
         return SizedBox(
