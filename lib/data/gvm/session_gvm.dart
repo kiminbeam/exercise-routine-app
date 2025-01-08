@@ -60,10 +60,10 @@ class SessionGvm extends Notifier<SessionUser> {
     dio.options.headers["Authorization"] = accessToken;
     Navigator.popAndPushNamed(mContext, "/main-page");
   }
+
 // 회원가입
   Future<void> join(String username, String password, String rePassword,
       String email, String height, String weight) async {
-
     if (!(password == rePassword)) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("회원가입 실패 : 비밀번호를 다시 확인해주세요.")),
@@ -82,7 +82,6 @@ class SessionGvm extends Notifier<SessionUser> {
       );
       return;
     }
-
 
     int ss = (double.parse(height) * 10).toInt();
     int sd = (double.parse(weight) * 1000).toInt();
@@ -146,7 +145,7 @@ class SessionGvm extends Notifier<SessionUser> {
 
     dio.options.headers["Authorization"] = accessToken;
 
-    Navigator.popAndPushNamed(mContext, "main-page");
+    Navigator.popAndPushNamed(mContext, "/main-page");
   }
 }
 

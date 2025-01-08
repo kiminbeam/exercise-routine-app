@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectsampledata/data/gvm/session_gvm.dart';
 import 'package:projectsampledata/data/repository/week_info_repository.dart';
 
 class MainPageModel {
@@ -31,12 +32,11 @@ class MainPageWeekInfo {
             .toList();
 }
 
-final mainPageProvider =
-    NotifierProvider<WeekInformationVM, MainPageModel?>(() {
-  return WeekInformationVM();
+final mainPageProvider = NotifierProvider<MainPageVM, MainPageModel?>(() {
+  return MainPageVM();
 });
 
-class WeekInformationVM extends Notifier<MainPageModel?> {
+class MainPageVM extends Notifier<MainPageModel?> {
   final weekInfoRepository = const WeekInfoRepository();
 
   @override
@@ -46,8 +46,8 @@ class WeekInformationVM extends Notifier<MainPageModel?> {
   }
 
   Future<void> init() async {
-    Map<String, dynamic> responseBody =
-        await weekInfoRepository.takeWeekInformaition();
+    Map<String, dynamic> responseBody = await weekInfoRepository
+        .takeWeekInformaition(ref.read(sessionProvider).id!);
 
     // if (!responseBody["success"]) {
     //   ScaffoldMessenger.of(mContext!).showSnackBar(

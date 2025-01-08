@@ -1,7 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-final baseUrl = "http://192.168.0.87:8080";
+
+final baseUrl = "http://192.168.0.88:8080"; // 박무현
+// final baseUrl = "http://192.168.0.65:8080"; // 송승현
+// final baseUrl = "http://192.168.0.87:8080"; // 김인범
+// final baseUrl = "http://192.168.0.42:8080"; // 조세은
+// final baseUrl = "http://192.168.0.40:8080"; // 이나겸
 
 //로그인 되면, dio에 jwt 추가하기
 final dio = Dio(
