@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:projectsampledata/ui/pages/exercise/exercise_list_page/exercise_list_page.dart';
 
 class ListDetailOfDayButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        // 운동 추가하기 페이지로 넘기기
+        // 운동 리스트 페이지로 넘기기
+        // 새로운 화면으로 넘어가는 것이므로 Navigator.push 적용함
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_) => ExerciseListPage()));
       },
       child: Row(
         mainAxisSize: MainAxisSize.min,

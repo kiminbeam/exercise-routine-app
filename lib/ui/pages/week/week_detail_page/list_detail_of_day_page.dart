@@ -1,8 +1,11 @@
 // StatelessWidget 일때
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectsampledata/ui/common_widgets/custom_navigator.dart';
+import 'package:projectsampledata/ui/pages/week/week_detail_page/list_detail_of_day_vm.dart';
 import 'package:projectsampledata/ui/pages/week/week_detail_page/widgets/list_detail_of_day_body.dart';
+import 'package:projectsampledata/ui/pages/week/week_detail_page/widgets/list_detail_of_day_card.dart';
 import 'package:projectsampledata/ui/pages/week/week_detail_page/widgets/list_detail_of_day_button.dart';
 
 class ListDetailOfDayPage extends StatelessWidget {
@@ -12,7 +15,7 @@ class ListDetailOfDayPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      endDrawer: CustomNavigation(scaffoldKey), // 메뉴바
+      endDrawer: CustomNavigation(scaffoldKey), // 사이드 메뉴바
       appBar: AppBar(
         title: Center(
           child: Text(
@@ -29,43 +32,7 @@ class ListDetailOfDayPage extends StatelessWidget {
           },
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Padding(
-            padding: EdgeInsets.all(20.0),
-            // 추가하기 버튼
-            child: ListDetailOfDayButton(),
-          ),
-
-          // 운동 리스트
-          Expanded(
-            child: ListView(
-              children: [
-                // 임시 문자열과 숫자로 해놓고 데이터베이스 확실해지면 바꾸기
-                WorkoutCard(
-                  title: '운동명',
-                  bodyPart: '부위',
-                  setCount: 3,
-                  repeatCount: 15,
-                ),
-                WorkoutCard(
-                  title: '운동명',
-                  bodyPart: '부위',
-                  setCount: 4,
-                  repeatCount: 12,
-                ),
-                WorkoutCard(
-                  title: '운동명',
-                  bodyPart: '부위',
-                  setCount: 2,
-                  repeatCount: 10,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: ListDetailOfDayBody(),
     );
   }
 }
