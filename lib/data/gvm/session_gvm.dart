@@ -139,7 +139,11 @@ class SessionGvm extends Notifier<SessionUser> {
     dio.options.headers["Authorization"] = "";
 
     // 4. 화면이동
-    Navigator.popAndPushNamed(mContext, "/login");
+    Navigator.pushNamedAndRemoveUntil(
+      mContext,
+      '/login', // 이동할 경로
+      (Route<dynamic> route) => false, // 모든 이전 경로 제거
+    );
   }
 
   // 1. 절대 SessionUser가 있을 수가 없다.
