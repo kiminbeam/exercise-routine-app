@@ -6,22 +6,23 @@ import '../../../common_widgets/custom_navigator.dart';
 import 'widgets/main_body.dart';
 
 class MainPage extends ConsumerWidget {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final scaffoldKey = GlobalKey<ScaffoldState>();
     MainPageModel? mainPageModel = ref.watch(mainPageProvider);
 
     if (mainPageModel == null) {
       return Center(child: CircularProgressIndicator());
     } else {
       return Scaffold(
+        key: scaffoldKey,
         endDrawer: CustomNavigation(scaffoldKey),
         appBar: AppBar(
           backgroundColor: Colors.black,
           iconTheme: IconThemeData(color: Colors.white),
           title: const Text(
-            '기본 홈',
+            '주간 계획',
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,

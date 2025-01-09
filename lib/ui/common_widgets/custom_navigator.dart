@@ -23,9 +23,8 @@ class CustomNavigation extends ConsumerWidget {
               ),
               TextButton(
                 onPressed: () {
-                  print("마이페이지 클릭됨");
-                  //scaffoldKey.currentState!.openEndDrawer();
-                  //Navigator.pushNamed(context, "/post/write");
+                  // 페이지 이동
+                  Navigator.popAndPushNamed(context, "/user-info-page");
                 },
                 child: const Text(
                   "마이페이지",
@@ -39,10 +38,7 @@ class CustomNavigation extends ConsumerWidget {
               const Divider(),
               TextButton(
                 onPressed: () {
-                  // 햄버거 수동으로 닫아주기
-                  // scaffoldKey.currentState?.openEnDrawer();
-                  // Navigator.popAndPushNamed(scaffoldKey.cuurentContext!, "/login");
-                  print("주간 계획 클릭됨");
+                  Navigator.popAndPushNamed(context, "/main-page");
                 },
                 child: const Text(
                   "주간 계획",

@@ -9,15 +9,10 @@ class MainBodyItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int printCount = 0;
-
     double screenWidth = MediaQuery.of(context).size.width;
+    var (count, text) =
+        screenWidthCalculate(screenWidth, weekInformation.fitnessList);
 
-    // 시간 날 때 아래 조건문 > 화면 크기에 따라 값을 도출해주는 메서드로 분리
-    printCount = screenWidthCalculate(screenWidth, printCount);
-
-    List<String> displayList =
-        weekInformation.fitnessList.take(printCount).toList();
     return InkWell(
       onTap: () {
         print("${weekInformation.dayOfWeek}요일 버튼 클릭됨");
@@ -25,12 +20,8 @@ class MainBodyItem extends StatelessWidget {
       child: Container(
         height: 100.0,
         padding: const EdgeInsets.all(20.0),
-        // decoration: BoxDecoration(
-        //   border: Border.all(color: Colors.black, width: 2),
-        //   borderRadius: BorderRadius.circular(10),
-        // ),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center, // 수직 가운데 정렬
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(width: 20),
             Text(
@@ -41,28 +32,19 @@ class MainBodyItem extends StatelessWidget {
                   color: Colors.grey[700]),
             ),
             const SizedBox(width: 40.0),
-            Container(
+            Expanded(
               child: Row(
                 children: [
-                  Wrap(
-                    spacing: 8.0, // 각 항목 사이의 간격
-                    children: displayList
-                        .map(
-                          (fitness) => Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Text(
-                              "( " + fitness + " ) ",
-                              style:
-                                  TextStyle(fontSize: 25, color: Colors.grey),
-                            ),
-                          ),
-                        )
-                        .toList(),
+                  Expanded(
+                    child: Text(
+                      text,
+                      style: TextStyle(fontSize: 22, color: Colors.grey),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      softWrap: false,
+                    ),
                   ),
-                  listSizeCheck(printCount),
-                  SizedBox(
-                    width: 10,
-                  )
+                  listSizeCheck(count),
                 ],
               ),
             ),
@@ -72,38 +54,39 @@ class MainBodyItem extends StatelessWidget {
     );
   }
 
-  int screenWidthCalculate(double screenWidth, int printCount) {
-    if (screenWidth >= 300) {
-      printCount = 1;
+  (int, String) screenWidthCalculate(
+      double screenWidth, List<String> fitnessList) {
+    int maxPrintAvailabe = ((screenWidth - 250) / 100 * 7).floor();
+    String text = "";
+    int count = 0;
+    bool notOverFlow = true;
+    for (int j = 0; j < fitnessList.length && notOverFlow; j++) {
+      for (int i = 0; i < fitnessList[j].length; i++) {
+        text = text + fitnessList[j][i];
+        if (text.length == maxPrintAvailabe) {
+          notOverFlow = false;
+          break;
+        }
+      }
+      if (notOverFlow) {
+        count++;
+        if (text.length + 2 < maxPrintAvailabe && j != fitnessList.length - 1) {
+          text = text + ", ";
+        }
+      }
     }
-    if (screenWidth >= 400) {
-      printCount = 2;
-    }
-    if (screenWidth >= 500) {
-      printCount = 3;
-    }
-    if (screenWidth >= 600) {
-      printCount = 4;
-    }
-    if (screenWidth >= 700) {
-      printCount = 5;
-    }
-    if (screenWidth >= 800) {
-      printCount = 6;
-    }
-    return printCount;
+
+    return (count, text);
   }
 
   Builder listSizeCheck(int printCount) {
-    return Builder(
-      builder: (context) {
-        if (weekInformation.fitnessList.length > printCount) {
-          return Icon(Icons.more_horiz, size: 40.0, color: Colors.grey);
-        }
-        return SizedBox(
-          width: 0,
-        );
-      },
-    );
+    return Builder(builder: (context) {
+      if (weekInformation.fitnessList.length > printCount) {
+        return Icon(Icons.more_horiz, size: 40.0, color: Colors.grey);
+      }
+      return SizedBox(
+        width: 0,
+      );
+    });
   }
 }
