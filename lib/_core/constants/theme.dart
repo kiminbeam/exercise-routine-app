@@ -13,6 +13,6 @@ AppBarTheme appBarTheme() {
     centerTitle: true,
     backgroundColor: Colors.black,
     elevation: 0,
-    iconTheme: IconThemeData(color: Colors.white),
+//    iconTheme: IconThemeData(color: Colors.white),
   );
 }

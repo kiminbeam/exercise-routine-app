@@ -29,13 +29,6 @@ class JoinPage extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.menu),
-            color: Colors.white,
-            onPressed: () {},
-          )
-        ],
       ),
       body: JoinBody(heightRatio: heightRatio),
     );

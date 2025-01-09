@@ -286,12 +286,7 @@ class JoinBody extends ConsumerWidget {
                   ),
                 ),
                 onPressed: () {
-                  if(_height.text.isEmpty){
-                    _height.text = "0";
-                  }
-                  if(_weight.text.isEmpty){
-                    _weight.text = "0";
-                  }
+
                   gvm.join(_username.text.trim(),_password.text.trim(),_rePassword.text.trim() ,_email.text.trim(), _height.text.trim(),_weight.text.trim());
 
                 },
