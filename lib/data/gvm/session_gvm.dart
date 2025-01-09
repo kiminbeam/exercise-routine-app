@@ -25,7 +25,6 @@ class SessionGvm extends Notifier<SessionUser> {
   final mContext = navigatorKey.currentContext!;
   UserRepository userRepository = const UserRepository();
 
-
 //
   @override
   SessionUser build() {
@@ -66,14 +65,17 @@ class SessionGvm extends Notifier<SessionUser> {
 // 회원가입
   Future<void> join(String username, String password, String rePassword,
       String email, String height, String weight) async {
-
     final validate1 = validateUsername();
     final validate2 = validatePassword();
     final validate3 = validateEmail();
 
-    if(validate1(username)!=null||validate2(password)!=null||validate3(email)!=null){
+    if (validate1(username) != null ||
+        validate2(password) != null ||
+        validate3(email) != null) {
       ScaffoldMessenger.of(mContext).showSnackBar(
-        SnackBar(content: Text("회원가입 실패 : ${validate1(username) ?? validate2(password)?? validate3(email)}.")),
+        SnackBar(
+            content: Text(
+                "회원가입 실패 : ${validate1(username) ?? validate2(password) ?? validate3(email)}.")),
       );
       return;
     }
@@ -84,10 +86,10 @@ class SessionGvm extends Notifier<SessionUser> {
       );
       return;
     }
-    if(height.isEmpty){
+    if (height.isEmpty) {
       height = "0";
     }
-    if(weight.isEmpty){
+    if (weight.isEmpty) {
       weight = "0";
     }
 
@@ -129,6 +131,7 @@ class SessionGvm extends Notifier<SessionUser> {
   Future<void> logout() async {
     // 1. 디바이스 토큰 삭제
     await secureStorage.delete(key: "accessToken");
+
     // 2. 상태 갱신
     state = SessionUser();
 

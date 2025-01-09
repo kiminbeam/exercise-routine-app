@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectsampledata/data/gvm/session_gvm.dart';
 import 'package:projectsampledata/data/repository/user_info_repository.dart';
 
 class UserInfoModel {
@@ -39,13 +40,15 @@ class UserInfoVM extends Notifier<UserInfoModel?> {
   @override
   UserInfoModel? build() {
     state = null;
-    init(1);
+    init();
     return state;
   }
 
-  Future<void> init(int id) async {
+  Future<void> init() async {
+    SessionUser sessionUser = ref.read(sessionProvider);
+
     Map<String, dynamic> responseBody =
-        await userInfoRepository.findById(id: id);
+        await userInfoRepository.findById(sessionUser.id!);
     if (!responseBody["success"]) {
       state = null;
       return;
