@@ -35,11 +35,12 @@ class MainPageWeekInfo {
             .toList();
 }
 
-final mainPageProvider = NotifierProvider<MainPageVM, MainPageModel?>(() {
+final mainPageProvider =
+    NotifierProvider.autoDispose<MainPageVM, MainPageModel?>(() {
   return MainPageVM();
 });
 
-class MainPageVM extends Notifier<MainPageModel?> {
+class MainPageVM extends AutoDisposeNotifier<MainPageModel?> {
   final mContext = navigatorKey.currentContext!;
   final weekInfoRepository = const WeekInfoRepository();
 
@@ -50,8 +51,10 @@ class MainPageVM extends Notifier<MainPageModel?> {
   }
 
   Future<void> init() async {
-    Map<String, dynamic> responseBody = await weekInfoRepository
-        .takeWeekInformaition(ref.read(sessionProvider).id!);
+    SessionUser sessionUser = ref.read(sessionProvider);
+
+    Map<String, dynamic> responseBody =
+        await weekInfoRepository.takeWeekInformaition(sessionUser.id!);
 
     if (!responseBody["success"]) {
       ScaffoldMessenger.of(mContext!).showSnackBar(

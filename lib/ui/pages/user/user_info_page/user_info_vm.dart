@@ -32,16 +32,15 @@ class UserInfoModel {
 }
 
 final userInfoProvider =
-    NotifierProvider<UserInfoVM, UserInfoModel?>(UserInfoVM.new);
+    NotifierProvider.autoDispose<UserInfoVM, UserInfoModel?>(UserInfoVM.new);
 
-class UserInfoVM extends Notifier<UserInfoModel?> {
+class UserInfoVM extends AutoDisposeNotifier<UserInfoModel?> {
   final userInfoRepository = const UserInfoRepository();
 
   @override
   UserInfoModel? build() {
-    state = null;
     init();
-    return state;
+    return null;
   }
 
   Future<void> init() async {
