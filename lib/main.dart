@@ -17,10 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-<<<<<<< HEAD
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         home: SplashPage(),
+        // home: MainPage(),
         routes: {
           "/login": (context) => LoginPage(), // 로그인 페이지
           "/join": (context) => JoinPage(),
@@ -28,13 +28,6 @@ class MyApp extends StatelessWidget {
         },
         theme: ThemeData(appBarTheme: appBarTheme()) // 정의한 AppBarTheme 적용 ),
         );
-=======
-      debugShowCheckedModeBanner: false,
-      home: ListDetailOfDayPage(),
-      // home: AddExerciseDetailPage(),
-      // home: MainPage(),
-    );
->>>>>>> 328973b ([fix]요일 별 리스트 상세보기 화면에 데이터를 리스트로 뿌리는 방식으로 변경)
   }
 }
 
