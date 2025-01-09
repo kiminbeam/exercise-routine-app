@@ -1,78 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectsampledata/data/repository/list_detail_of_day_info_repository.dart';
+import 'package:projectsampledata/ui/pages/week/week_detail_page/list_detail_of_day_vm.dart';
+import 'package:projectsampledata/ui/pages/week/week_detail_page/widgets/list_detail_of_day_button.dart';
+import 'package:projectsampledata/ui/pages/week/week_detail_page/widgets/list_detail_of_day_card.dart';
 
-class WorkoutCard extends StatelessWidget {
-  final String title;
-  final String bodyPart;
-  final int setCount;
-  final int repeatCount;
-
-  const WorkoutCard({
-    required this.title,
-    required this.bodyPart,
-    required this.setCount,
-    required this.repeatCount,
-  });
-
+class ListDetailOfDayBody extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 120,
-      child: InkWell(
-        onTap: () {
-          // 카드 클릭시 동작
-        },
-        child: Card(
-          elevation: 4,
-          margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween, // 양옆으로 배치
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start, // 텍스트 왼쪽 정렬
-                  mainAxisAlignment: MainAxisAlignment.center, // 세로 방향 가운데 정렬
-                  children: [
-                    Text(
-                      '$title',
-                      style:
-                          TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(height: 10),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          '$bodyPart',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                        SizedBox(width: 30),
-                        Text(
-                          '$setCount세트',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                          '$repeatCount회',
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    ListDetailOfDayPageModel? model = ref.watch(listDetailOfDayProvider);
 
-                // 삭제 버튼
-                IconButton(
-                  icon: Icon(Icons.delete),
-                  onPressed: () {
-                    // 삭제 동작
+    final list = model?.exercisesOfDayInformationList ?? [];
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Padding(
+          padding: EdgeInsets.all(20.0),
+          // 추가하기 버튼
+          child: ListDetailOfDayButton(),
+        ),
+
+        // 운동 리스트
+        Expanded(
+          child: list.isEmpty
+              ? Center(
+                  child: Text(
+                    'No exercises available',
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: list.length,
+                  itemBuilder: (context, index) {
+                    final exercise = list[index];
+                    return ExerciseCard(exercisesOfDayInformation: exercise);
                   },
                 ),
-              ],
-            ),
-          ),
         ),
-      ),
+      ],
     );
   }
 }

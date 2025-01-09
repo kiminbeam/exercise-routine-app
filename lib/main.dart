@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
         home: SplashPage(),
+        // home: MainPage(),
         routes: {
           "/login": (context) => LoginPage(), // 로그인 페이지
           "/join": (context) => JoinPage(),

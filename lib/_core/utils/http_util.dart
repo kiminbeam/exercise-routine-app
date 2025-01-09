@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-
 final baseUrl = "http://192.168.0.88:8080"; // 박무현
 // final baseUrl = "http://192.168.0.65:8080"; // 송승현
 // final baseUrl = "http://192.168.0.87:8080"; // 김인범

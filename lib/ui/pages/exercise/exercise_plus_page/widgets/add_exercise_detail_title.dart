@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AddExerciseDetailTitle extends StatelessWidget {
-  final title; // 운동명
+  final exerciseName; // 운동명
 
-  AddExerciseDetailTitle({required this.title});
+  AddExerciseDetailTitle({required this.exerciseName});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class AddExerciseDetailTitle extends StatelessWidget {
       child: Center(
         // 후에 운동명 필드 적용하기
         child: Text(
-          '$title',
+          '$exerciseName',
           style: TextStyle(
             fontSize: 20.0,
             fontWeight: FontWeight.bold,
