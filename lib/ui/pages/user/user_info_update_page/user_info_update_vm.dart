@@ -5,6 +5,25 @@ import 'package:projectsampledata/main.dart';
 import 'package:projectsampledata/ui/pages/user/user_info_page/user_info_vm.dart';
 
 class UpdateForUserInfoModel {
+  final id;
+  final username;
+  final email;
+  final weight;
+  final height;
+
+  UpdateForUserInfoModel(
+      {required this.id,
+      required this.username,
+      required this.email,
+      required this.weight,
+      required this.height});
+
+  UpdateForUserInfoModel.fromMap(Map<String, dynamic> map)
+      : id = map["id"],
+        username = map["username"],
+        email = map["email"],
+        weight = map["weight"],
+        height = map["height"];
 //copyWith
 }
 
@@ -20,7 +39,7 @@ class UserInfoUpdateVM
 
   @override
   UpdateForUserInfoModel? build(id) {
-    // init(); // 현재 유저 id 통해서 사용자 정보 가져 와야 한다
+    init(); // 현재 유저 id 통해서 사용자 정보 가져 와야 한다
     return null;
   }
 
@@ -37,10 +56,10 @@ class UserInfoUpdateVM
       return;
     }
     // 가져온 유저 정보를 상태에 등록
-    // UpdateForUserInfoModel model =
-    //     UpdateForUserInfoModel.fromMap(responseBody["response"]);
+    UpdateForUserInfoModel model =
+        UpdateForUserInfoModel.fromMap(responseBody["response"]);
 
-    //state = model;
+    state = model;
   }
 
   // 수정하기 버튼 클릭 시 >> 수정 요청 보내는 메서드

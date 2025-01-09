@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import '../../plan_update_page/plan_update_page.dart';
 
 class PlanDetailPageButton extends StatelessWidget {
-  const PlanDetailPageButton({super.key});
+  final planId;
+
+  PlanDetailPageButton({required this.planId});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +14,7 @@ class PlanDetailPageButton extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => PlanUpdatePage(),
+            builder: (context) => PlanUpdatePage(planId: planId),
           ),
         );
       },
