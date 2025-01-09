@@ -16,8 +16,8 @@ class UserInfoUpdateBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    UserInfoUpdateVM vm =
-        ref.read(userInfoUpdateProvider(1).notifier); // 유저ID받게 변경해야 됨
+    UserInfoUpdateVM vm = ref
+        .read(userInfoUpdateProvider(1).notifier); // 유저ID받게 변경해야 됨 (1 = 유저 아이디)
     return Padding(
       padding: const EdgeInsets.all(20.0),
       child: ListView(
