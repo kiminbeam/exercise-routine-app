@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+// NotifierProvider.family로 변경 필요
 final planUpdateProvider = NotifierProvider<PlanUpdateVM, int>(() {
   return PlanUpdateVM();
 });
@@ -7,7 +8,7 @@ final planUpdateProvider = NotifierProvider<PlanUpdateVM, int>(() {
 class PlanUpdateVM extends Notifier<int> {
   @override
   int build() {
-    init(); // 기존 해당 운동 계획 정보 가져 오기
+    init(); // 기존 해당 운동 계획 정보 가져 오기/ plan 객체 가져오면 되나?
     return 0;
   }
 
@@ -30,4 +31,6 @@ class PlanUpdateVM extends Notifier<int> {
 
     // 응답이 200 일 경우 상태 변경 시키기. Plan
   }
+
+// 수정하기 페이지 넘어올 때, 해당 계획 정보 받아내는 메서드
 }

@@ -5,6 +5,9 @@ import '../../../common_widgets/custom_navigator.dart';
 
 class PlanDetailPage extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final int planId;
+
+  PlanDetailPage({required this.planId});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class PlanDetailPage extends StatelessWidget {
         backgroundColor: Colors.black,
         centerTitle: true,
       ),
-      body: PlanDetailBody(),
+      body: PlanDetailBody(planId: planId),
     );
   }
 }

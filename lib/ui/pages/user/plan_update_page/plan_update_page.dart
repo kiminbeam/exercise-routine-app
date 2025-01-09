@@ -4,6 +4,10 @@ import 'package:projectsampledata/ui/pages/user/plan_update_page/widgets/plan_up
 import '../../../common_widgets/custom_navigator.dart';
 
 class PlanUpdatePage extends StatelessWidget {
+  final planId;
+
+  PlanUpdatePage({required this.planId});
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final sets = TextEditingController();
   final repeatCount = TextEditingController();
