@@ -131,19 +131,15 @@ class SessionGvm extends Notifier<SessionUser> {
   Future<void> logout() async {
     // 1. 디바이스 토큰 삭제
     await secureStorage.delete(key: "accessToken");
-    print("Access token deleted");
 
     // 2. 상태 갱신
     state = SessionUser();
-    print("State updated to new session");
 
     // 3. dio 갱신
     dio.options.headers["Authorization"] = "";
-    print("Dio headers reset");
 
     // 4. 화면이동
     Navigator.popAndPushNamed(mContext, "/login");
-    print("Navigated to login page");
   }
 
   // 1. 절대 SessionUser가 있을 수가 없다.
