@@ -16,11 +16,12 @@ class UserInfoPage extends ConsumerWidget {
       return Center(child: CircularProgressIndicator());
     } else {
       return Scaffold(
+        key: scaffoldKey,
         endDrawer: CustomNavigation(scaffoldKey),
-        backgroundColor: Colors.white,
         appBar: AppBar(
           title: const Text('사용자 정보'),
           centerTitle: true,
+          iconTheme: IconThemeData(color: Colors.white),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             color: Colors.white,

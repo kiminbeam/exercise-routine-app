@@ -1,15 +1,14 @@
 // StatelessWidget 일때
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectsampledata/ui/common_widgets/custom_navigator.dart';
-import 'package:projectsampledata/ui/pages/week/week_detail_page/list_detail_of_day_vm.dart';
 import 'package:projectsampledata/ui/pages/week/week_detail_page/widgets/list_detail_of_day_body.dart';
-import 'package:projectsampledata/ui/pages/week/week_detail_page/widgets/list_detail_of_day_card.dart';
-import 'package:projectsampledata/ui/pages/week/week_detail_page/widgets/list_detail_of_day_button.dart';
 
 class ListDetailOfDayPage extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  String dayOfWeek;
+
+  ListDetailOfDayPage(this.dayOfWeek);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +18,7 @@ class ListDetailOfDayPage extends StatelessWidget {
       appBar: AppBar(
         title: Center(
           child: Text(
-            '요일', // 임시 문자열 / 요일값 받아서 넣기
+            '${dayOfWeek}요일', // 임시 문자열 / 요일값 받아서 넣기
             style: TextStyle(color: Colors.white),
           ),
         ),

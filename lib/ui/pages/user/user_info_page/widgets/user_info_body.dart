@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectsampledata/data/gvm/session_gvm.dart';
 import 'package:projectsampledata/ui/pages/user/user_info_page/user_info_vm.dart';
 
-class UserInfoBody extends StatelessWidget {
+class UserInfoBody extends ConsumerWidget {
   final UserInfoModel userInfoModel;
 
   UserInfoBody({required this.userInfoModel});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     String userWeight;
     String userHeight;
 
+    SessionGvm gvm = ref.read(sessionProvider.notifier);
     if (userInfoModel.weight == null || userInfoModel.weight == 0) {
       userWeight = "등록된 정보가 없습니다.";
     } else {
@@ -54,7 +57,7 @@ class UserInfoBody extends StatelessWidget {
               elevation: 4,
               child: InkWell(
                   onTap: () {
-                    print("회원 정보 수정 버튼 클릭됨");
+                    Navigator.pushNamed(context, "/user-info-update-page");
                   },
                   child: UserInfoBodyWidget(
                     text: "회원 정보 수정하기",
@@ -68,7 +71,7 @@ class UserInfoBody extends StatelessWidget {
               elevation: 4,
               child: InkWell(
                 onTap: () {
-                  print("로그아웃 버튼 클릭됨");
+                  gvm.logout();
                 },
                 child: UserInfoBodyWidget(
                   text: "로그 아웃",

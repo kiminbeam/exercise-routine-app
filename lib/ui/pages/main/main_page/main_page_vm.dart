@@ -1,6 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectsampledata/data/gvm/session_gvm.dart';
 import 'package:projectsampledata/data/repository/week_info_repository.dart';
+
+import '../../../../main.dart';
 
 class MainPageModel {
   List<MainPageWeekInfo> weekInformationList;
@@ -37,6 +40,7 @@ final mainPageProvider = NotifierProvider<MainPageVM, MainPageModel?>(() {
 });
 
 class MainPageVM extends Notifier<MainPageModel?> {
+  final mContext = navigatorKey.currentContext!;
   final weekInfoRepository = const WeekInfoRepository();
 
   @override
@@ -49,13 +53,13 @@ class MainPageVM extends Notifier<MainPageModel?> {
     Map<String, dynamic> responseBody = await weekInfoRepository
         .takeWeekInformaition(ref.read(sessionProvider).id!);
 
-    // if (!responseBody["success"]) {
-    //   ScaffoldMessenger.of(mContext!).showSnackBar(
-    //     SnackBar(
-    //         content: Text("게시글 목록 보기 실패 : ${responseBody["errorMessage"]}")),
-    //   );
-    //   return;
-    // }
+    if (!responseBody["success"]) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(
+            content: Text("게시글 목록 보기 실패 : ${responseBody["errorMessage"]}")),
+      );
+      return;
+    }
 
     List<dynamic> weekInfoData = responseBody["response"]["weekInfo"];
     List<MainPageWeekInfo> weekInfoList =
