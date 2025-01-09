@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projectsampledata/data/global_data/click_week.dart';
 
 import '../main_page_vm.dart';
 
@@ -15,7 +16,8 @@ class MainBodyItem extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        print("${weekInformation.dayOfWeek}요일 버튼 클릭됨");
+        ClickWeek.dayOfWeekName = weekInformation.dayOfWeek;
+        Navigator.pushNamed(context, "/list-detail-of-day-page");
       },
       child: Container(
         height: 100.0,
