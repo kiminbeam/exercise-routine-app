@@ -5,6 +5,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
+import 'package:projectsampledata/_core/utils/validator_util.dart';
 import 'package:projectsampledata/ui/pages/user/user_login_page/user_repository.dart';
 
 import '../../_core/utils/http_util.dart';
@@ -23,6 +24,7 @@ class SessionGvm extends Notifier<SessionUser> {
 //
   final mContext = navigatorKey.currentContext!;
   UserRepository userRepository = const UserRepository();
+
 
 //
   @override
@@ -64,12 +66,31 @@ class SessionGvm extends Notifier<SessionUser> {
 // 회원가입
   Future<void> join(String username, String password, String rePassword,
       String email, String height, String weight) async {
+
+    final validate1 = validateUsername();
+    final validate2 = validatePassword();
+    final validate3 = validateEmail();
+
+    if(validate1(username)!=null||validate2(password)!=null||validate3(email)!=null){
+      ScaffoldMessenger.of(mContext).showSnackBar(
+        SnackBar(content: Text("회원가입 실패 : ${validate1(username) ?? validate2(password)?? validate3(email)}.")),
+      );
+      return;
+    }
+
     if (!(password == rePassword)) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("회원가입 실패 : 비밀번호를 다시 확인해주세요.")),
       );
       return;
     }
+    if(height.isEmpty){
+      height = "0";
+    }
+    if(weight.isEmpty){
+      weight = "0";
+    }
+
     if (double.tryParse(height) == null) {
       ScaffoldMessenger.of(mContext).showSnackBar(
         SnackBar(content: Text("회원가입 실패 :신장을 잘못입력하였습니다.")),
@@ -102,7 +123,7 @@ class SessionGvm extends Notifier<SessionUser> {
       );
       return;
     }
-    Navigator.pushNamed(mContext, "/login");
+    Navigator.popAndPushNamed(mContext, "/login");
   }
 
   Future<void> logout() async {

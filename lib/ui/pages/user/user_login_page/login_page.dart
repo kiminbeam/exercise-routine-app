@@ -23,13 +23,6 @@ class LoginPage extends ConsumerWidget {
           ),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-            icon: Icon(Icons.menu),
-            color: Colors.white,
-            onPressed: () {},
-          )
-        ],
       ),
 
       body: LoginBody(heightRatio: heightRatio),
