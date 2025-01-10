@@ -5,6 +5,9 @@ import '../../../common_widgets/custom_navigator.dart';
 
 class ExerciseDetailPage extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final id;
+
+  ExerciseDetailPage(this.id);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +19,7 @@ class ExerciseDetailPage extends StatelessWidget {
         backgroundColor: Colors.black,
         centerTitle: true,
       ),
-      body: ExerciseDetailBody(),
+      body: ExerciseDetailBody(id),
     );
   }
 }
