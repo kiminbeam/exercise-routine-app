@@ -14,7 +14,9 @@ class AddFitnessDetailImage extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
       ),
       // gif 이미지 적용
-      // child: Image.asset()),
+      child: Image.asset('${imagePath}', fit: BoxFit.cover,)
+
     );
+
   }
 }
