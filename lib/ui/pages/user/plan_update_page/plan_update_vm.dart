@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectsampledata/data/repository/plan_update_repository.dart';
 import 'package:projectsampledata/ui/pages/user/plan_detail_page/plan_detail_vm.dart';
+import 'package:projectsampledata/ui/pages/week/week_detail_page/list_detail_of_day_vm.dart';
 
 import '../../../../main.dart';
 
@@ -12,11 +13,11 @@ class PlanUpdateModel {
 }
 
 // NotifierProvider.family로 변경 필요
-final planUpdateProvider = NotifierProvider<PlanUpdateVM, int>(() {
+final planUpdateProvider = NotifierProvider.autoDispose<PlanUpdateVM, int>(() {
   return PlanUpdateVM();
 });
 
-class PlanUpdateVM extends Notifier<int> {
+class PlanUpdateVM extends AutoDisposeNotifier<int> {
   final mContext = navigatorKey.currentContext!;
   PlanUpdateRepository planUpDateRepo = const PlanUpdateRepository();
 
@@ -70,6 +71,9 @@ class PlanUpdateVM extends Notifier<int> {
         model!.copyWith(set: set, repeat: repeatC, weight: weighData);
     vm.updateStatus(updateModel);
 
-    // ref.read(listDetailOfDayProvider).updateStatus(planId);
+    ref.read(listDetailOfDayProvider.notifier).init();
+    ref.read(planDetailProvider(planId).notifier).init(planId);
+
+    Navigator.pop(mContext);
   }
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_list_page/fitness_list_page.dart';
 import 'package:projectsampledata/ui/pages/main/main_page/main_page.dart';
 import 'package:projectsampledata/ui/pages/splash/splash_page.dart';
+import 'package:projectsampledata/ui/pages/user/plan_detail_page/plan_detail_page.dart';
 import 'package:projectsampledata/ui/pages/user/user_info_page/user_info_page.dart';
 import 'package:projectsampledata/ui/pages/user/user_info_update_page/user_info_update_page.dart';
 import 'package:projectsampledata/ui/pages/user/user_join_page/join_page.dart';
@@ -10,7 +10,7 @@ import 'package:projectsampledata/ui/pages/user/user_login_page/login_page.dart'
 import 'package:projectsampledata/ui/pages/week/week_detail_page/list_detail_of_day_page.dart';
 
 import '_core/constants/theme.dart';
-import 'data/global_data/click_week.dart';
+import 'data/global_data/global_data.dart';
 
 GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
@@ -31,8 +31,10 @@ class MyApp extends StatelessWidget {
           "/main-page": (context) => MainPage(),
           "/user-info-page": (context) => UserInfoPage(),
           "/list-detail-of-day-page": (context) =>
-              ListDetailOfDayPage(ClickWeek.dayOfWeekName),
+              ListDetailOfDayPage(GlobalData.dayOfWeekName),
           "/user-info-update-page": (context) => UserInfoUpdatePage(),
+          "/plan-detail-page": (context) =>
+              PlanDetailPage(planId: GlobalData.planId),
         },
         theme: ThemeData(appBarTheme: appBarTheme()) // 정의한 AppBarTheme 적용
         );
