@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectsampledata/data/gvm/session_gvm.dart';
+import 'package:projectsampledata/data/global_data/global_data.dart';
 import 'package:projectsampledata/data/repository/list_detail_of_day_repository.dart';
 import 'package:projectsampledata/main.dart';
 
@@ -50,11 +50,12 @@ class PlanOfDayInfo {
 }
 
 final listDetailOfDayProvider =
-    NotifierProvider<ListDetailOfDayVm, ListDetailOfDayPageModel?>(() {
+    NotifierProvider.autoDispose<ListDetailOfDayVm, ListDetailOfDayPageModel?>(
+        () {
   return ListDetailOfDayVm();
 });
 
-class ListDetailOfDayVm extends Notifier<ListDetailOfDayPageModel?> {
+class ListDetailOfDayVm extends AutoDisposeNotifier<ListDetailOfDayPageModel?> {
   final mContext = navigatorKey.currentContext!;
   final listDetailOfDayInfoRepository = const ListDetailOfDayInfoRepository();
 
@@ -70,7 +71,7 @@ class ListDetailOfDayVm extends Notifier<ListDetailOfDayPageModel?> {
     // 통신으로 해당 요일 운동 계획 리스트 가져오기
     // ref.read(sessionProvider).id : 로그인한 유저의 id
     Map<String, dynamic> responseBody = await listDetailOfDayInfoRepository
-        .takeListDetailOfDayInformaition(ref.read(sessionProvider).id!, "day");
+        .takeListDetailOfDayInformaition(GlobalData.dayOfWeekName);
 
     if (!responseBody["success"]) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
@@ -80,7 +81,9 @@ class ListDetailOfDayVm extends Notifier<ListDetailOfDayPageModel?> {
       return;
     }
 
-    List<dynamic> planOfDayInfoData = responseBody["response"]["planOfDayInfo"];
+    List<dynamic> planOfDayInfoData = responseBody["response"];
+
+    print(planOfDayInfoData.toString());
     List<PlanOfDayInfo> planOfDayInfoList =
         planOfDayInfoData.map((e) => PlanOfDayInfo.fromMap(e)).toList();
     // 가져온 해당 요일 계획 리스트를 상태에 등록

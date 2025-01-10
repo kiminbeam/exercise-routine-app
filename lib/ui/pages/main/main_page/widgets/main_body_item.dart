@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectsampledata/data/global_data/click_week.dart';
+import 'package:projectsampledata/data/global_data/global_data.dart';
 
 import '../main_page_vm.dart';
 
@@ -16,7 +16,7 @@ class MainBodyItem extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        ClickWeek.dayOfWeekName = weekInformation.dayOfWeek;
+        GlobalData.dayOfWeekName = weekInformation.dayOfWeek;
         Navigator.pushNamed(context, "/list-detail-of-day-page");
       },
       child: Container(
