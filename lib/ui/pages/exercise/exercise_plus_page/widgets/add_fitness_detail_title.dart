@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class AddExerciseDetailTitle extends StatelessWidget {
+class AddFitnessDetailTitle extends StatelessWidget {
   final exerciseName; // 운동명
 
-  AddExerciseDetailTitle({required this.exerciseName});
+  AddFitnessDetailTitle({required this.exerciseName});
 
   @override
   Widget build(BuildContext context) {

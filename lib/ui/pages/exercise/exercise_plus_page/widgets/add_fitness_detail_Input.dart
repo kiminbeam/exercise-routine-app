@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class AddExerciseDetailInput extends StatelessWidget {
+class AddFitnessDetailInput extends StatelessWidget {
   final TextEditingController controller;
   final String labelText;
   final String suffixText;
   final IconData icon;
 
-  AddExerciseDetailInput({
+  AddFitnessDetailInput({
     required this.controller,
     required this.labelText,
     required this.suffixText,
