@@ -13,6 +13,18 @@ class PlanDetailModel {
   final repeat;
   final weight;
 
+  // 기본 생성자
+  PlanDetailModel({
+    required this.planId,
+    required this.day,
+    required this.fitnessName,
+    required this.fitnessImg,
+    required this.fitnessContent,
+    required this.set,
+    required this.repeat,
+    required this.weight,
+  });
+
   PlanDetailModel.fromMap(Map<String, dynamic> map)
       : planId = map["id"],
         day = map["day"],
@@ -22,6 +34,26 @@ class PlanDetailModel {
         set = map["exerciseSet"],
         repeat = map["repeat"],
         weight = map["weight"];
+
+  PlanDetailModel copyWith(
+      {int? planId,
+      String? day,
+      String? fitnessName,
+      String? fitnessImg,
+      String? fitnessContent,
+      int? set,
+      int? repeat,
+      int? weight}) {
+    return PlanDetailModel(
+        planId: planId ?? this.planId,
+        day: day ?? this.day,
+        fitnessName: fitnessName ?? this.fitnessName,
+        fitnessImg: fitnessImg ?? this.fitnessImg,
+        fitnessContent: fitnessContent ?? this.fitnessContent,
+        set: set ?? this.set,
+        repeat: repeat ?? this.repeat,
+        weight: weight ?? this.weight);
+  }
 
   @override
   String toString() {
@@ -61,5 +93,9 @@ class PlanDetailVM extends FamilyNotifier<PlanDetailModel?, int> {
     }
     // state에 등록하기
     state = PlanDetailModel.fromMap(responseBody["response"]);
+  }
+
+  void updateStatus(PlanDetailModel updatedPlan) {
+    state = updatedPlan; // 새로운 모델 상태로 갱신
   }
 }

@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:logger/logger.dart';
 import 'package:projectsampledata/_core/utils/http_util.dart';
 
 class UserInfoUpdateRepository {
@@ -15,10 +14,9 @@ class UserInfoUpdateRepository {
 
   Future<Map<String, dynamic>> updateUserInfo(
       Map<String, dynamic> requestData) async {
-    Response response = await dio.put("/user/update", data: requestData);
+    Response response = await dio.put("/api/user/update", data: requestData);
     Map<String, dynamic> body = response.data;
 
-    Logger().d(body);
     return body;
   }
 }

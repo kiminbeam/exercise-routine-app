@@ -1,4 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectsampledata/data/repository/plan_update_repository.dart';
+import 'package:projectsampledata/ui/pages/user/plan_detail_page/plan_detail_vm.dart';
+
+import '../../../../main.dart';
+
+class PlanUpdateModel {
+  final int planId;
+
+  PlanUpdateModel({required this.planId});
+}
 
 // NotifierProvider.family로 변경 필요
 final planUpdateProvider = NotifierProvider<PlanUpdateVM, int>(() {
@@ -6,9 +17,12 @@ final planUpdateProvider = NotifierProvider<PlanUpdateVM, int>(() {
 });
 
 class PlanUpdateVM extends Notifier<int> {
+  final mContext = navigatorKey.currentContext!;
+  PlanUpdateRepository planUpDateRepo = const PlanUpdateRepository();
+
   @override
   int build() {
-    init(); // 기존 해당 운동 계획 정보 가져 오기/ plan 객체 가져오면 되나?
+    // init(); // 기존 해당 운동 계획 정보 가져 오기 수정하는데 필요한가?
     return 0;
   }
 
@@ -22,15 +36,40 @@ class PlanUpdateVM extends Notifier<int> {
   }
 
   // 수정하기 버튼 클릭 시 >> 수정 요청 보내는 메서드
-  Future<void> updatePlan() async {
+  Future<void> updatePlan(
+      int planId, String sets, String repeatCount, String weight) async {
+    int set = int.parse(sets);
+    int repeatC = int.parse(repeatCount);
+    int weighData = int.parse(weight);
     // 받은 데이터 Map으로 변경
-
+    Map<String, dynamic> requestData = {
+      "id": planId,
+      "exerciseSet": set,
+      "repeat": repeatC,
+      "weight": weighData,
+    };
     // 통신으로 Map데이터를 계획 수정 요청 보내기
+    Map<String, dynamic> responseBody =
+        await planUpDateRepo.updatePlan(requestData);
 
     // 응답이 200 이 아닐 경우 처리 로직(스넥바 사용)
+    if (!responseBody["success"]) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(
+            content: Text("계획 상세정보 불러오기 실패 : ${responseBody["errorMessage"]}")),
+      );
+      return;
+    }
+    final updatedPlan = PlanDetailModel.fromMap(responseBody["response"]);
 
-    // 응답이 200 일 경우 상태 변경 시키기. Plan
+    // 응답이 200 일 경우 상태 변경 시키기. PlanDetailPage, ListDetailOfDayPage
+    // 1. PlanDetailPage 상태 변경
+    PlanDetailVM vm = ref.read(planDetailProvider(planId).notifier);
+    PlanDetailModel? model = vm.state;
+    PlanDetailModel updateModel =
+        model!.copyWith(set: set, repeat: repeatC, weight: weighData);
+    vm.updateStatus(updateModel);
+
+    // ref.read(listDetailOfDayProvider).updateStatus(planId);
   }
-
-// 수정하기 페이지 넘어올 때, 해당 계획 정보 받아내는 메서드
 }
