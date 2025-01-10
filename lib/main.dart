@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/add_fitness_detail_page.dart';
 import 'package:projectsampledata/ui/pages/main/main_page/main_page.dart';
 import 'package:projectsampledata/ui/pages/splash/splash_page.dart';
 import 'package:projectsampledata/ui/pages/user/plan_detail_page/plan_detail_page.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
-        home: SplashPage(),
+        home: AddFitnessDetailPage(1, "금"),
         routes: {
           "/login": (context) => LoginPage(), // 로그인 페이지
           "/join": (context) => JoinPage(),
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
           "/user-info-update-page": (context) => UserInfoUpdatePage(),
           "/plan-detail-page": (context) =>
               PlanDetailPage(planId: GlobalData.planId),
+          "add-fitness-page" : (context) => AddFitnessDetailPage(1, "금"),
         },
         theme: ThemeData(appBarTheme: appBarTheme()) // 정의한 AppBarTheme 적용
         );

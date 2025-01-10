@@ -75,7 +75,7 @@ class AddFitnessDetailVM extends AutoDisposeFamilyNotifier<FitnessDetailModel?,i
       "repeat": int.tryParse(repeat) ?? 0,
       "weight": (double.parse(weight) * 1000).toInt(),
     };
-
+    print("여기는 작동해");
     // 통신으로 Map데이터를 운동 계획 추가 요청 보내기
     Map<String,dynamic> responseBody =  await exerciseRepository.saveExercise(ref.read(sessionProvider).id!,body);
     // 응답이 200 이 아닐 경우 처리 로직(스넥바 사용)
@@ -93,7 +93,7 @@ class AddFitnessDetailVM extends AutoDisposeFamilyNotifier<FitnessDetailModel?,i
     ListDetailOfDayVm vm2 = ref.read(listDetailOfDayProvider.notifier);
     vm2.init();
     // 페이지 이동
-    Navigator.popAndPushNamed(mContext, "/day-exercise");
+    Navigator.popAndPushNamed(mContext, "");
   }
 }
 

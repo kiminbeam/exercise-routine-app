@@ -17,6 +17,7 @@ class AddFitnessDetailButton extends ConsumerWidget {
     return TextButton(
       onPressed: () {
         // 추가하기 동작
+        print("작동하나?");
         vm.AddExerciseDetail(_fitnessId, _dayOfWeek,  _exerciseSet.text.trim(), _repeat.text.trim(),  _weight.text.trim());
       },
       child: Text(
