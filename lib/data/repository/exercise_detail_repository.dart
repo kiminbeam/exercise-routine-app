@@ -1,0 +1,3 @@
+class ExerciseDetailRepository {
+  const ExerciseDetailRepository();
+}
