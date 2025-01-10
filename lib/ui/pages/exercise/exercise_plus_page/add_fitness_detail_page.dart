@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projectsampledata/ui/common_widgets/custom_navigator.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/widgets/add_exercise_detail_Input.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/widgets/add_exercise_detail_body.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/widgets/add_exercise_detail_button.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/widgets/add_exercise_detail_image.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/widgets/add_exercise_detail_title.dart';
+import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/widgets/add_fitness_detail_body.dart';
 
-class AddExerciseDetailPage extends StatelessWidget {
+class AddFitnessDetailPage extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -30,7 +26,7 @@ class AddExerciseDetailPage extends StatelessWidget {
           },
         ),
       ),
-      body: AddExerciseDetailBody(),
+      body: AddFitnessDetailBody(),
     );
   }
 }

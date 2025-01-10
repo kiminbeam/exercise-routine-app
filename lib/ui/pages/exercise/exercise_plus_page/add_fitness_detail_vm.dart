@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/add_fitness_detail_page.dart';
 
-final addExerciseDetailProvider =
-    NotifierProvider<AddExerciseDetailVM, int>(() {
-  return AddExerciseDetailVM();
+final addFitnessDetailProvider = NotifierProvider<AddFitnessDetailVM, int>(() {
+  return AddFitnessDetailVM();
 });
 
-class AddExerciseDetailVM extends Notifier<int> {
+class AddFitnessDetailVM extends Notifier<int> {
   @override
   int build() {
     // 해당 운동 상세 정보(운동명, gif 이미지) 가져오기

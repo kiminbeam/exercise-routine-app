@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AddExerciseDetailButton extends StatelessWidget {
+class AddFitnessDetailButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(

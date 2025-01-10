@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class AddExerciseDetailImage extends StatelessWidget {
+class AddFitnessDetailImage extends StatelessWidget {
   final imagePath; // 이미지 경로
 
-  AddExerciseDetailImage({required this.imagePath});
+  AddFitnessDetailImage({required this.imagePath});
 
   @override
   Widget build(BuildContext context) {
