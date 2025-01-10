@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_list_page/exercise_list_page.dart';
+import 'package:projectsampledata/ui/pages/exercise/exercise_list_page/fitness_list_page.dart';
 
 class ListDetailOfDayButton extends StatelessWidget {
   @override
@@ -9,7 +9,7 @@ class ListDetailOfDayButton extends StatelessWidget {
         // 운동 리스트 페이지로 넘기기
         // 새로운 화면으로 넘어가는 것이므로 Navigator.push 적용함
         Navigator.push(
-            context, MaterialPageRoute(builder: (_) => ExerciseListPage()));
+            context, MaterialPageRoute(builder: (_) => FitnessListPage()));
       },
       child: Row(
         mainAxisSize: MainAxisSize.min,
