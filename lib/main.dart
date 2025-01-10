@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectsampledata/ui/pages/exercise/exercise_list_page/fitness_list_page.dart';
 import 'package:projectsampledata/ui/pages/main/main_page/main_page.dart';
+import 'package:projectsampledata/ui/pages/splash/splash_page.dart';
 import 'package:projectsampledata/ui/pages/user/user_info_page/user_info_page.dart';
 import 'package:projectsampledata/ui/pages/user/user_info_update_page/user_info_update_page.dart';
 import 'package:projectsampledata/ui/pages/user/user_join_page/join_page.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         navigatorKey: navigatorKey,
         debugShowCheckedModeBanner: false,
-        home: FitnessListPage(),
+        home: SplashPage(),
         routes: {
           "/login": (context) => LoginPage(), // 로그인 페이지
           "/join": (context) => JoinPage(),
