@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:projectsampledata/data/repository/list_detail_of_day_repository.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectsampledata/ui/pages/week/week_detail_page/list_detail_of_day_vm.dart';
 
-class ExerciseCard extends StatelessWidget {
-  final ExercisesOfDayInformation exercisesOfDayInformation;
-  // final title;
-  // final bodypart;
-  // final setCount;
-  // final repeatCount;
+class ExerciseCard extends ConsumerWidget {
+  final PlanOfDayInfo planOfDayInfomation;
 
-  ExerciseCard({
-    required this.exercisesOfDayInformation,
-  });
+  ExerciseCard({required this.planOfDayInfomation});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ListDetailOfDayVm vm = ref.read(listDetailOfDayProvider.notifier);
+
     return SizedBox(
       height: 120,
       child: InkWell(
         onTap: () {
           // 카드 클릭시 해당 운동 상세 페이지로 이동
+          Navigator.pushNamed(context, "/plan-detail-page");
         },
         child: Card(
           elevation: 4,
@@ -34,7 +31,8 @@ class ExerciseCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center, // 세로 방향 가운데 정렬
                   children: [
                     Text(
-                      '${exercisesOfDayInformation.exerciseName}',
+                      // 운동명
+                      '${planOfDayInfomation.fitnessName}',
                       style:
                           TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
                     ),
@@ -43,17 +41,17 @@ class ExerciseCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          '${exercisesOfDayInformation.detailOfExercise.bodyPart}',
+                          '${planOfDayInfomation.bodyPart}',
                           style: TextStyle(fontSize: 18),
                         ),
                         SizedBox(width: 30),
                         Text(
-                          '${exercisesOfDayInformation.detailOfExercise.setCount}세트',
+                          '${planOfDayInfomation.setCount}세트',
                           style: TextStyle(fontSize: 18),
                         ),
                         SizedBox(width: 8),
                         Text(
-                          '${exercisesOfDayInformation.detailOfExercise.repeatCount}회',
+                          '${planOfDayInfomation.repeatCount}회',
                           style: TextStyle(fontSize: 18),
                         ),
                       ],
@@ -65,7 +63,8 @@ class ExerciseCard extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.delete),
                   onPressed: () {
-                    // 삭제 동작
+                    // 운동 삭제
+                    vm.remove(planOfDayInfomation.id);
                   },
                 ),
               ],

@@ -5,12 +5,13 @@ import 'package:projectsampledata/ui/pages/week/week_detail_page/list_detail_of_
 import 'package:projectsampledata/ui/pages/week/week_detail_page/widgets/list_detail_of_day_button.dart';
 import 'package:projectsampledata/ui/pages/week/week_detail_page/widgets/list_detail_of_day_card.dart';
 
-class ListDetailOfDayBody extends ConsumerWidget {
-  @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    ListDetailOfDayPageModel? model = ref.watch(listDetailOfDayProvider);
+class ListDetailOfDayBody extends StatelessWidget {
+  const ListDetailOfDayBody({required this.list});
 
-    final list = model?.exercisesOfDayInformationList ?? [];
+  final List<PlanOfDayInfo> list;
+
+  @override
+  Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -32,8 +33,9 @@ class ListDetailOfDayBody extends ConsumerWidget {
               : ListView.builder(
                   itemCount: list.length,
                   itemBuilder: (context, index) {
-                    final exercise = list[index];
-                    return ExerciseCard(exercisesOfDayInformation: exercise);
+                    return ExerciseCard(
+                      planOfDayInfomation: list[index],
+                    );
                   },
                 ),
         ),
