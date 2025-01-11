@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/add_fitness_detail_page.dart';
+import 'package:projectsampledata/ui/pages/exercise/just_read_exercise_list_page/just_read_exercise_list_page.dart';
 import 'package:projectsampledata/ui/pages/main/main_page/main_page.dart';
-import 'package:projectsampledata/ui/pages/splash/splash_page.dart';
 import 'package:projectsampledata/ui/pages/user/plan_detail_page/plan_detail_page.dart';
 import 'package:projectsampledata/ui/pages/user/user_info_page/user_info_page.dart';
 import 'package:projectsampledata/ui/pages/user/user_info_update_page/user_info_update_page.dart';
@@ -36,7 +36,8 @@ class MyApp extends StatelessWidget {
           "/user-info-update-page": (context) => UserInfoUpdatePage(),
           "/plan-detail-page": (context) =>
               PlanDetailPage(planId: GlobalData.planId),
-          "add-fitness-page" : (context) => AddFitnessDetailPage(1, "금"),
+          "add-fitness-page": (context) => AddFitnessDetailPage(1, "금"),
+          "/just-read-exercise-page": (context) => JustReadExerciseListPage(),
         },
         theme: ThemeData(appBarTheme: appBarTheme()) // 정의한 AppBarTheme 적용
         );
