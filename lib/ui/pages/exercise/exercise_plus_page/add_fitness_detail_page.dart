@@ -4,6 +4,9 @@ import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/widgets/a
 
 class AddFitnessDetailPage extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final _fitnessId;
+  final _dayOfWeek;
+  AddFitnessDetailPage(this._fitnessId, this._dayOfWeek);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class AddFitnessDetailPage extends StatelessWidget {
           },
         ),
       ),
-      body: AddFitnessDetailBody(),
+    body: AddFitnessDetailBody(_fitnessId, _dayOfWeek),
     );
   }
 }

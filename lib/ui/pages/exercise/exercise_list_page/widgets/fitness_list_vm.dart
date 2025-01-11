@@ -73,6 +73,7 @@ class FitnessListVM extends Notifier<FitnessListModel?> {
 
   /// 초기화: 전체 피트니스 리스트 가져오기
   Future<void> init() async {
+
     Map<String, dynamic> responseBodyFiness = await repository.findAllFitness();
     Map<String, dynamic> responseBodyCategory =
         await repository.findAllCategory();

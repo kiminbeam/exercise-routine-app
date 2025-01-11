@@ -42,3 +42,43 @@ Function validateEmail() {
     }
   };
 }
+
+Function validateExerciseSet() {
+  return (String? value) {
+    if (value!.isEmpty) {
+      return "세트를 입력해주세요.";
+    } else if (int.tryParse(value) == null) {
+      return "세트를 잘못입력하였습니다.";
+    } else if(int.tryParse(value)!<=0){
+      return "세트는 0보다 커야함.";
+    }else {
+      return null;
+    }
+  };
+}
+
+Function validateRepeat() {
+  return (String? value) {
+    if (value!.isEmpty) {
+      return "반복횟수 입력해주세요.";
+    } else if (int.tryParse(value) == null) {
+      return "반복횟수 잘못입력하였습니다.";
+    } else if(int.tryParse(value)!<=0){
+      return "반복횟수는 0보다 커야함.";
+    }else{
+      return null;
+    }
+  };
+}
+
+Function validateWeight() {
+  return (String? value) {
+    if (value!.isEmpty) {
+      return "무게를 입력해주세요.";
+    } else if (double.tryParse(value) == null) {
+      return "무게를 잘못입력하였습니다.";
+    } else if(double.tryParse(value)!<=0.0){
+      return "무게는 0이상.";
+    }else return null;
+  };
+}
