@@ -24,8 +24,7 @@ final exerciseDetailProvider =
   return ExerciseDetailVM();
 });
 
-class ExerciseDetailVM
-    extends AutoDisposeFamilyNotifier<ExerciseDetailModel?, int> {
+class ExerciseDetailVM extends FamilyNotifier<ExerciseDetailModel?, int> {
   final mContext = navigatorKey.currentContext;
   ExerciseDetailRepository execiseDetailRepo = const ExerciseDetailRepository();
 

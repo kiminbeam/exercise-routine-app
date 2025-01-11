@@ -39,7 +39,7 @@ class ExerciseDetailBody extends ConsumerWidget {
               width: 300,
               height: 300,
               child: Image.asset(
-                model.imgUrl,
+                "",
                 fit: BoxFit.cover,
               ),
             ),
