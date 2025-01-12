@@ -270,7 +270,7 @@ class JoinBody extends ConsumerWidget {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 50,
           ),
           Material(
             borderRadius: BorderRadius.circular(8),

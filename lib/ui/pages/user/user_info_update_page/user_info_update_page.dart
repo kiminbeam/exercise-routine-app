@@ -39,6 +39,7 @@ class UserInfoUpdatePage extends ConsumerWidget {
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
+          iconTheme: IconThemeData(color: Colors.white),
         ),
         body: UserInfoUpdateBody(sessionUser, vm, model),
       );

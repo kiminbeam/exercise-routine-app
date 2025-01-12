@@ -24,12 +24,6 @@ class PlanDetailBody extends ConsumerWidget {
         padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                PlanDetailPageButton(planId: planId),
-              ],
-            ),
             SizedBox(height: 15),
             PlanDetailExerciseTitle(title: model.fitnessName),
             // 운동명 model.fitnessName
@@ -60,12 +54,24 @@ class PlanDetailBody extends ConsumerWidget {
                   SizedBox(height: 15),
                   PlanDetailGoals(
                       goalText1: "수행 무게",
-                      goalNumber: model!.weight,
+                      goalNumber: model!.weight / 1000,
                       goalText2: "kg"),
                   // goalNumber>> model.weight
                 ],
               ),
             ),
+            SizedBox(height: 50,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                    child: PlanDetailPageButton(
+                      planId: planId,
+                      model: model,
+                    )),
+              ],
+            ),
+            SizedBox(height: 50,),
           ],
         ),
       );

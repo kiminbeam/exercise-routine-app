@@ -39,15 +39,33 @@ class PlanUpdateVM extends AutoDisposeNotifier<int> {
   // 수정하기 버튼 클릭 시 >> 수정 요청 보내는 메서드
   Future<void> updatePlan(
       int planId, String sets, String repeatCount, String weight) async {
-    int set = int.parse(sets);
-    int repeatC = int.parse(repeatCount);
-    int weighData = int.parse(weight);
+    if (sets == "") sets = "-1";
+    if (repeatCount == "") repeatCount = "-1";
+    if (weight == "") weight = "-1";
+
+    int set;
+    int repeatC;
+    int weighData;
+    try {
+      set = int.parse(sets);
+      repeatC = int.parse(repeatCount);
+      weighData = int.parse(weight);
+    } catch (e) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(
+            content: Text("숫자만 입력해주세요")),
+      );
+      return;
+    }
+
+
+
     // 받은 데이터 Map으로 변경
     Map<String, dynamic> requestData = {
       "id": planId,
       "exerciseSet": set,
       "repeat": repeatC,
-      "weight": weighData,
+      "weight": weighData == -1 ? weighData : weighData * 1000,
     };
     // 통신으로 Map데이터를 계획 수정 요청 보내기
     Map<String, dynamic> responseBody =
@@ -74,6 +92,7 @@ class PlanUpdateVM extends AutoDisposeNotifier<int> {
     ref.read(listDetailOfDayProvider.notifier).init();
     ref.read(planDetailProvider(planId).notifier).init(planId);
 
+    Navigator.pop(mContext);
     Navigator.pop(mContext);
   }
 }

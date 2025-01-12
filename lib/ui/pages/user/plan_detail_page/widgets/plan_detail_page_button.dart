@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 import '../../plan_update_page/plan_update_page.dart';
+import '../plan_detail_vm.dart';
 
 class PlanDetailPageButton extends StatelessWidget {
   final planId;
+  final PlanDetailModel model;
 
-  PlanDetailPageButton({required this.planId});
+  PlanDetailPageButton({required this.planId, required this.model});
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +16,16 @@ class PlanDetailPageButton extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => PlanUpdatePage(planId: planId),
+            builder: (context) => PlanUpdatePage(planId: planId, model: model,),
           ),
         );
       },
-      child: Text(
-        "수정하기",
-        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Text(
+          "계획 수정하기",
+          style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+        ),
       ),
       style: TextButton.styleFrom(
           backgroundColor: Colors.grey[600],

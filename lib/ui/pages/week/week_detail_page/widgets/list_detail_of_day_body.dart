@@ -24,7 +24,7 @@ class ListDetailOfDayBody extends StatelessWidget {
           child: list.isEmpty
               ? Center(
                   child: Text(
-                    'No exercises available',
+                    '등록된 운동 정보가 없습니다',
                     style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
                 )

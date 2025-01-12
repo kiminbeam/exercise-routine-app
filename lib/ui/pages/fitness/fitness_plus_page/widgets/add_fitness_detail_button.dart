@@ -18,12 +18,14 @@ class AddFitnessDetailButton extends ConsumerWidget {
     return TextButton(
       onPressed: () {
         // 추가하기 동작
-        print("작동하나?");
         vm.AddFitnessDetail(_fitnessId, _dayOfWeek,  _exerciseSet.text.trim(), _repeat.text.trim(),  _weight.text.trim());
       },
-      child: Text(
-        '추가하기',
-        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+      child: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Text(
+          '추가하기',
+          style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
+        ),
       ),
       style: TextButton.styleFrom(
           backgroundColor: Colors.grey[600],

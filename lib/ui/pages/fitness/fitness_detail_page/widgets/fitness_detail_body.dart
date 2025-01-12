@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../fitness_plus_page/widgets/add_fitness_detail_image.dart';
 import '../fitness_detail_vm.dart';
 
 class FitnessDetailBody extends ConsumerWidget {
@@ -39,10 +40,8 @@ class FitnessDetailBody extends ConsumerWidget {
             SizedBox(
               width: 300,
               height: 300,
-              child: Image.asset(
-                "",
-                fit: BoxFit.cover,
-              ),
+              child: AddFitnessDetailImage(imagePath: '${model.fitnessImg}'),
+
             ),
             SizedBox(height: 10),
             Container(

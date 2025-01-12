@@ -34,6 +34,7 @@ class PlanOfDayInfo {
   String bodyPart;
   int setCount;
   int repeatCount;
+  int weight;
 
   PlanOfDayInfo({
     required this.id,
@@ -41,6 +42,7 @@ class PlanOfDayInfo {
     required this.bodyPart,
     required this.setCount,
     required this.repeatCount,
+    required this.weight
   });
 
   PlanOfDayInfo.fromMap(Map<String, dynamic> map)
@@ -48,7 +50,8 @@ class PlanOfDayInfo {
         fitnessName = map['fitnessName'],
         bodyPart = map['bodyPart'],
         setCount = map['setCount'],
-        repeatCount = map['repeatCount'];
+        repeatCount = map['repeatCount'],
+        weight = map['weight'];
 }
 
 final listDetailOfDayProvider =

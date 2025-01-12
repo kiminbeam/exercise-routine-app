@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:projectsampledata/data/global_data/global_data.dart';
 
+import '../../data/gvm/session_gvm.dart';
+
 class CustomNavigation extends ConsumerWidget {
   final scaffoldKey;
 
@@ -9,6 +11,8 @@ class CustomNavigation extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+
+    SessionGvm gvm = ref.read(sessionProvider.notifier);
     return Container(
       width: getDrawerWidth(context),
       height: double.infinity,
@@ -21,20 +25,6 @@ class CustomNavigation extends ConsumerWidget {
             children: [
               SizedBox(
                 height: 50,
-              ),
-              TextButton(
-                onPressed: () {
-                  // 페이지 이동
-                  Navigator.popAndPushNamed(context, "/user-info-page");
-                },
-                child: const Text(
-                  "마이페이지",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
               ),
               const Divider(),
               TextButton(
@@ -53,11 +43,40 @@ class CustomNavigation extends ConsumerWidget {
               const Divider(),
               TextButton(
                 onPressed: () {
+                  // 페이지 이동
+                  Navigator.popAndPushNamed(context, "/user-info-page");
+                },
+                child: const Text(
+                  "마이페이지",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              const Divider(),
+              TextButton(
+                onPressed: () {
                   GlobalData.isFitnessPlus = false;
                   Navigator.popAndPushNamed(context, "/fitness-list-page");
                 },
                 child: const Text(
                   "모든 운동 열람",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              const Divider(),
+              TextButton(
+                onPressed: () {
+                  gvm.logout();
+                },
+                child: const Text(
+                  "로그아웃",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

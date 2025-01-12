@@ -17,6 +17,7 @@ class FitnessDetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text("운동정보 상세", style: TextStyle(color: Colors.white)),
         backgroundColor: Colors.black,
+        iconTheme: IconThemeData(color: Colors.white),
         centerTitle: true,
       ),
       body: FitnessDetailBody(id),

@@ -14,15 +14,15 @@ class UserInfoBody extends ConsumerWidget {
     String userHeight;
 
     SessionGvm gvm = ref.read(sessionProvider.notifier);
-    if (userInfoModel.weight == null || userInfoModel.weight == 0) {
+    if (userInfoModel.weight == 0) {
       userWeight = "등록된 정보가 없습니다.";
     } else {
-      userWeight = userInfoModel.weight.toString() + "kg";
+      userWeight = (userInfoModel.weight / 10).toString() + "kg";
     }
-    if (userInfoModel.height == null || userInfoModel.height == 0) {
+    if (userInfoModel.height == 0) {
       userHeight = "등록된 정보가 없습니다.";
     } else {
-      userHeight = userInfoModel.height.toString() + "cm";
+      userHeight = (userInfoModel.height / 10).toString() + "cm";
     }
 
     return SingleChildScrollView(
@@ -38,49 +38,43 @@ class UserInfoBody extends ConsumerWidget {
               height: 100,
             ),
             UserInfoBodyWidget(
-              text: "신장 : $userHeight",
-              fontSize: 30,
+              text: "사용자 신장 : $userHeight",
+              fontSize: 25,
               border: true,
             ),
             SizedBox(
               height: 50,
             ),
             UserInfoBodyWidget(
-              text: "몸무게 : $userWeight",
-              fontSize: 30,
+              text: "사용자 체중 : $userWeight",
+              fontSize: 25,
               border: true,
             ),
             SizedBox(
-              height: 50,
+              height: 100,
             ),
-            Card(
-              elevation: 4,
-              child: InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, "/user-info-update-page");
-                  },
-                  child: UserInfoBodyWidget(
-                    text: "회원 정보 수정하기",
-                    fontSize: 30,
-                  )),
-            ),
-            SizedBox(
-              height: 150,
-            ),
-            Card(
-              elevation: 4,
-              child: InkWell(
+            InkWell(
                 onTap: () {
-                  gvm.logout();
+                  Navigator.pushNamed(context, "/user-info-update-page");
                 },
                 child: UserInfoBodyWidget(
-                  text: "로그 아웃",
-                  fontSize: 30,
-                ),
+                  text: "회원 정보 수정하기",
+                  fontSize: 25,
+                )),
+            SizedBox(
+              height: 50,
+            ),
+            InkWell(
+              onTap: () {
+                gvm.logout();
+              },
+              child: UserInfoBodyWidget(
+                text: "로그 아웃",
+                fontSize: 25,
               ),
             ),
             SizedBox(
-              height: 100,
+              height: 50,
             ),
           ],
         ),
@@ -107,7 +101,7 @@ class UserInfoBodyWidget extends StatelessWidget {
         ),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.black, width: 2),
-          borderRadius: BorderRadius.circular(20.0),
+          borderRadius: BorderRadius.circular(15.0),
         ),
         child: Text(
           "${text}",
@@ -117,17 +111,17 @@ class UserInfoBodyWidget extends StatelessWidget {
       );
     } else {
       return Container(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(15.0),
         constraints: BoxConstraints(
           minWidth: double.infinity,
         ),
         decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(20.0),
+          color: Colors.grey[600],
+          borderRadius: BorderRadius.circular(12.0),
         ),
         child: Text(
           "${text}",
-          style: TextStyle(fontSize: fontSize, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Colors.white, fontSize: fontSize, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center, // 이 부분을 추가하여 텍스트를 가운데 정렬합니다.
         ),
       );

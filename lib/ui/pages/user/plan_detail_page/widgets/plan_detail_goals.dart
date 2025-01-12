@@ -15,10 +15,10 @@ class PlanDetailGoals extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 200,
+      width: double.infinity,
       child: Card(
         elevation: 4,
-        color: Colors.grey,
+        color: Colors.grey[50],
         child: Center(
           child: Text("$goalText1: $goalNumber$goalText2",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),

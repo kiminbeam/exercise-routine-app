@@ -19,38 +19,41 @@ class MainBodyItem extends StatelessWidget {
         GlobalData.dayOfWeekName = weekInformation.dayOfWeek;
         Navigator.pushNamed(context, "/list-detail-of-day-page");
       },
-      child: Container(
-        height: 100.0,
-        padding: const EdgeInsets.all(20.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(width: 20),
-            Text(
-              "${weekInformation.dayOfWeek}",
-              style: TextStyle(
-                  fontSize: 35,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey[700]),
-            ),
-            const SizedBox(width: 40.0),
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      text,
-                      style: TextStyle(fontSize: 22, color: Colors.grey),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 1,
-                      softWrap: false,
-                    ),
-                  ),
-                  listSizeCheck(count),
-                ],
+      child: Card(
+        elevation: 4,
+        child: Container(
+          height: 100.0,
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(width: 20),
+              Text(
+                "${weekInformation.dayOfWeek}",
+                style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.grey[700]),
               ),
-            ),
-          ],
+              const SizedBox(width: 40.0),
+              Expanded(
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        text,
+                        style: TextStyle(fontSize: 22, color: Colors.grey),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        softWrap: false,
+                      ),
+                    ),
+                    listSizeCheck(count),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

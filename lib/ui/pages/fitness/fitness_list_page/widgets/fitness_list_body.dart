@@ -153,8 +153,13 @@ class FitnessListBody extends ConsumerWidget {
                     ),
                     child: InkWell(
                       onTap: () {
-                        GlobalData.fitnessId = fitnessListModel.fitnessItems[index].fitnessId;
-                        Navigator.pushNamed(context, "/add-fitness-page");
+                        GlobalData.fitnessId =
+                            fitnessListModel.fitnessItems[index].fitnessId;
+                        if (GlobalData.isFitnessPlus) {
+                          Navigator.pushNamed(context, "/add-fitness-page");
+                        } else {
+                          Navigator.pushNamed(context, "/just-read-fitness-page");
+                        }
                       },
                       child: Center(
                         child: Text(

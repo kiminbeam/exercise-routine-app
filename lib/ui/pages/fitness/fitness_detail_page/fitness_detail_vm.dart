@@ -8,14 +8,14 @@ class FitnessDetailModel {
   final id;
   final fitnessName;
   final category;
-  final imgUrl;
+  final fitnessImg;
   final content;
 
   FitnessDetailModel.fromMap(Map<String, dynamic> map)
       : id = map["id"],
         fitnessName = map["fitnessName"],
         category = map["category"],
-        imgUrl = map["imgUrl"],
+        fitnessImg = map["fitnessImg"],
         content = map["content"];
 }
 

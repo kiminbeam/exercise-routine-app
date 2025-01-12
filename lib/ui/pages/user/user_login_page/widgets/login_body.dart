@@ -23,13 +23,13 @@ class LoginBody extends ConsumerWidget {
         children: [
           Column(
             children: [
-              const SizedBox(height: 20),
+              const SizedBox(height: 50),
               Image.asset(
                 "assets/logo.jpg",
                 height: 150,
                 width: 150,
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 40),
             ],
           ),
           Material(
@@ -68,7 +68,7 @@ class LoginBody extends ConsumerWidget {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 25,
           ),
           Material(
             borderRadius: BorderRadius.circular(8),
@@ -107,7 +107,7 @@ class LoginBody extends ConsumerWidget {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 60,
           ),
           Material(
             borderRadius: BorderRadius.circular(8),
@@ -140,7 +140,7 @@ class LoginBody extends ConsumerWidget {
             ),
           ),
           SizedBox(
-            height: 20,
+            height: 25,
           ),
           Material(
             borderRadius: BorderRadius.circular(8),

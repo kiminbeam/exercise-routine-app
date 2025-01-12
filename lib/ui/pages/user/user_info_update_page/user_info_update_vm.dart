@@ -8,8 +8,8 @@ class UpdateForUserInfoModel {
   final id;
   final username;
   final email;
-  final weight;
-  final height;
+  final int weight;
+  final int height;
 
   UpdateForUserInfoModel(
       {required this.id,
@@ -22,8 +22,8 @@ class UpdateForUserInfoModel {
       : id = map["id"],
         username = map["username"],
         email = map["email"],
-        weight = map["weight"],
-        height = map["height"];
+        weight = map["weight"] ?? 0,
+        height = map["height"] ?? 0;
 //copyWith
 }
 
@@ -77,7 +77,7 @@ class UserInfoUpdateVM
     }
     if (height.startsWith("0") || weight.startsWith("0")) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
-        SnackBar(content: Text("키와 몸무게는 0으로 ")),
+        SnackBar(content: Text("키와 몸무게는 0으로 시작할 수 없습니다 ")),
       );
       return;
     }
@@ -100,8 +100,8 @@ class UserInfoUpdateVM
     // 변수로 받은 데이터를 Map으로 파싱
     Map<String, dynamic> requestData = {
       "email": email,
-      "height": parseHeight,
-      "weight": parseWeight,
+      "height": parseHeight != 0 ? parseHeight * 10 : 0,
+      "weight": parseWeight != 0 ? parseWeight * 10 : 0,
     };
 
     // 통신을 통해서, 사용자 정보 수정 요청 보내기 (Map 데이터)
