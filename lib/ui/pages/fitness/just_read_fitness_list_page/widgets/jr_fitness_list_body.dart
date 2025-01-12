@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_detail_page/exercise_detail_page.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_list_page/widgets/fitness_list_vm.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_list_page/widgets/sliver_persistent_header_delegate.dart';
+
+import '../../fitness_detail_page/fitness_detail_page.dart';
+import '../../fitness_list_page/widgets/fitness_list_vm.dart';
+import '../../fitness_list_page/widgets/sliver_persistent_header_delegate.dart';
 
 class JrFitnessListBody extends ConsumerWidget {
   JrFitnessListBody({
@@ -153,7 +154,7 @@ class JrFitnessListBody extends ConsumerWidget {
                             context,
                             MaterialPageRoute(
                               builder: (_) =>
-                                  ExerciseDetailPage(fitnessItem.fitnessId),
+                                  FitnessDetailPage(fitnessItem.fitnessId),
                             ),
                           );
                         },

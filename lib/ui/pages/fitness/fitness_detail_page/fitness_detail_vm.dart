@@ -4,14 +4,14 @@ import 'package:projectsampledata/main.dart';
 
 import '../../../../data/repository/exercise_detail_repository.dart';
 
-class ExerciseDetailModel {
+class FitnessDetailModel {
   final id;
   final fitnessName;
   final category;
   final imgUrl;
   final content;
 
-  ExerciseDetailModel.fromMap(Map<String, dynamic> map)
+  FitnessDetailModel.fromMap(Map<String, dynamic> map)
       : id = map["id"],
         fitnessName = map["fitnessName"],
         category = map["category"],
@@ -19,17 +19,17 @@ class ExerciseDetailModel {
         content = map["content"];
 }
 
-final exerciseDetailProvider =
-    NotifierProvider.family<ExerciseDetailVM, ExerciseDetailModel?, int>(() {
-  return ExerciseDetailVM();
+final fitnessDetailProvider =
+    NotifierProvider.family<FitnessDetailVM, FitnessDetailModel?, int>(() {
+  return FitnessDetailVM();
 });
 
-class ExerciseDetailVM extends FamilyNotifier<ExerciseDetailModel?, int> {
+class FitnessDetailVM extends FamilyNotifier<FitnessDetailModel?, int> {
   final mContext = navigatorKey.currentContext;
-  ExerciseDetailRepository execiseDetailRepo = const ExerciseDetailRepository();
+  ExerciseDetailRepository fitnessDetailRepo = const ExerciseDetailRepository();
 
   @override
-  ExerciseDetailModel? build(id) {
+  FitnessDetailModel? build(id) {
     init(id);
     return null;
   }
@@ -37,7 +37,7 @@ class ExerciseDetailVM extends FamilyNotifier<ExerciseDetailModel?, int> {
   // 운동 상세정보 불러오기
   Future<void> init(id) async {
     // fitnessID 가지고 통신
-    Map<String, dynamic> responseBody = await execiseDetailRepo.findById(id);
+    Map<String, dynamic> responseBody = await fitnessDetailRepo.findById(id);
 
     if (!responseBody["success"]) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
@@ -46,6 +46,6 @@ class ExerciseDetailVM extends FamilyNotifier<ExerciseDetailModel?, int> {
       );
       return;
     }
-    state = ExerciseDetailModel.fromMap(responseBody["response"]);
+    state = FitnessDetailModel.fromMap(responseBody["response"]);
   }
 }

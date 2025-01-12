@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/add_fitness_detail_vm.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/widgets/add_fitness_detail_Input.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/widgets/add_fitness_detail_button.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/widgets/add_fitness_detail_image.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/widgets/add_fitness_detail_title.dart';
+import 'package:projectsampledata/ui/pages/fitness/fitness_plus_page/add_fitness_detail_vm.dart';
+import '../../fitness_detail_page/fitness_detail_vm.dart';
+import 'add_fitness_detail_Input.dart';
+import 'add_fitness_detail_button.dart';
+import 'add_fitness_detail_image.dart';
+import 'add_fitness_detail_title.dart';
 
 class AddFitnessDetailBody extends ConsumerWidget {
   final _fitnessId;
@@ -17,8 +18,8 @@ class AddFitnessDetailBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    FitnessDetailModel? model = ref.watch(
-        addFitnessDetailProvider(_fitnessId));
+
+    var model = ref.watch(addFitnessDetailProvider(_fitnessId));
 
     if (model == null) {
       return Center(child: CircularProgressIndicator());

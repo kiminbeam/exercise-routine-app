@@ -30,10 +30,10 @@
 //           Wrap(
 //             spacing: 8.0, // 각 항목 사이의 간격
 //             children: displayList
-//                 .map((exercise) => Padding(
+//                 .map((fitness) => Padding(
 //                       padding: const EdgeInsets.only(right: 8.0),
 //                       child: Text(
-//                         "( " + exercise.exerciseName + " ) ",
+//                         "( " + fitness.exerciseName + " ) ",
 //                         style: TextStyle(fontSize: 25, color: Colors.grey),
 //                       ),
 //                     ))

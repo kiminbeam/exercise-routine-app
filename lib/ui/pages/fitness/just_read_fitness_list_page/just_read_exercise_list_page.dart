@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_list_page/widgets/fitness_list_body.dart';
+import 'package:projectsampledata/ui/pages/fitness/just_read_fitness_list_page/widgets/jr_fitness_list_body.dart';
 
-class FitnessListPage extends StatelessWidget {
+class JustReadFitnessListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenHeight = MediaQuery.of(context).size.height;
     final screenWidth = MediaQuery.of(context).size.width;
-    // double aspectRatio = screenWidth < 400 ? 5 / 2 : 5 / 1.57;
-    // double aspectRatio = screenWidth < 500 ? 5 / 2 : 5 / 2;
     screenWidth < 400 ? screenHeight * 0.1 : screenHeight * 0.07;
     return Scaffold(
       appBar: AppBar(
@@ -27,8 +25,8 @@ class FitnessListPage extends StatelessWidget {
           ),
         ),
       ),
-      body:
-          FitnessListBody(screenHeight: screenHeight, screenWidth: screenWidth),
+      body: JrFitnessListBody(
+          screenHeight: screenHeight, screenWidth: screenWidth),
     );
   }
 }

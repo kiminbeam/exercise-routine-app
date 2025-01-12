@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:projectsampledata/data/global_data/global_data.dart';
 
 class CustomNavigation extends ConsumerWidget {
   final scaffoldKey;
@@ -52,7 +53,8 @@ class CustomNavigation extends ConsumerWidget {
               const Divider(),
               TextButton(
                 onPressed: () {
-                  print("모든 운동 열람 클릭됨");
+                  GlobalData.isFitnessPlus = false;
+                  Navigator.popAndPushNamed(context, "/fitness-list-page");
                 },
                 child: const Text(
                   "모든 운동 열람",

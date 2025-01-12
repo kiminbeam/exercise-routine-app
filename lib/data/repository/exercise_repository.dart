@@ -11,9 +11,8 @@ class ExerciseRepository{
     return body;
   }
   
-  Future<Map<String,dynamic>> saveExercise(int id, Map<String,dynamic> data) async{
-    print("작동은 하는중");
-    Response response = await dio.post("/api/plan/${id}", data: data);
+  Future<Map<String,dynamic>> saveExercise(int sessionUserId, Map<String,dynamic> data) async{
+    Response response = await dio.post("/plan/$sessionUserId", data: data);
     Map<String,dynamic> body = response.data;
     return body;
   }

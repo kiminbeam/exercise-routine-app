@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_detail_page/widgets/exercise_detail_body.dart';
+import 'package:projectsampledata/ui/pages/fitness/fitness_detail_page/widgets/fitness_detail_body.dart';
 
 import '../../../common_widgets/custom_navigator.dart';
 
-class ExerciseDetailPage extends StatelessWidget {
+class FitnessDetailPage extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final id;
 
-  ExerciseDetailPage(this.id);
+  FitnessDetailPage(this.id);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class ExerciseDetailPage extends StatelessWidget {
         backgroundColor: Colors.black,
         centerTitle: true,
       ),
-      body: ExerciseDetailBody(id),
+      body: FitnessDetailBody(id),
     );
   }
 }

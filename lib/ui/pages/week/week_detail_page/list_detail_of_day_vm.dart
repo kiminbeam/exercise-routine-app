@@ -4,6 +4,8 @@ import 'package:projectsampledata/data/global_data/global_data.dart';
 import 'package:projectsampledata/data/repository/list_detail_of_day_repository.dart';
 import 'package:projectsampledata/main.dart';
 
+import '../../main/main_page/main_page_vm.dart';
+
 class ListDetailOfDayPageModel {
   List<PlanOfDayInfo> planOfDayInfomationList;
 
@@ -94,7 +96,7 @@ class ListDetailOfDayVm extends AutoDisposeNotifier<ListDetailOfDayPageModel?> {
   // 운동 삭제
   void remove(int id) async {
     Map<String, dynamic> responseBody =
-        await listDetailOfDayInfoRepository.deletePlan(id);
+        await listDetailOfDayInfoRepository.deletePlan(id, GlobalData.dayOfWeekName);
 
     if (!responseBody["success"]) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
@@ -110,5 +112,8 @@ class ListDetailOfDayVm extends AutoDisposeNotifier<ListDetailOfDayPageModel?> {
     // 삭제를 상태에 반영
     state =
         state!.copyWith(planOfDayInfomationList: model.planOfDayInfomationList);
+
+    MainPageVM vm = ref.read(mainPageProvider.notifier);
+    vm.init();
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_list_page/fitness_list_page.dart';
+
+import '../../../fitness/fitness_list_page/fitness_list_page.dart';
 
 class ListDetailOfDayButton extends StatelessWidget {
   @override

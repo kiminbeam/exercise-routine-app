@@ -56,7 +56,7 @@ class AddFitnessDetailVM extends AutoDisposeFamilyNotifier<FitnessDetailModel?,i
   }
 
   // 추가하기 버튼 클릭 시 >> plan_tb에 insert 요청 보내는 메서드
-  Future<void> AddExerciseDetail(int fitnessId, String dayOfWeek, String exerciseSet, String repeat, String weight) async {
+  Future<void> AddFitnessDetail(int fitnessId, String dayOfWeek, String exerciseSet, String repeat, String weight) async {
     // 받은 데이터 Map으로 변경
     final ve = validateExerciseSet();
     final vr = validateRepeat();
@@ -75,9 +75,8 @@ class AddFitnessDetailVM extends AutoDisposeFamilyNotifier<FitnessDetailModel?,i
       "repeat": int.tryParse(repeat) ?? 0,
       "weight": (double.parse(weight) * 1000).toInt(),
     };
-    print("여기는 작동해");
     // 통신으로 Map데이터를 운동 계획 추가 요청 보내기
-    Map<String,dynamic> responseBody =  await exerciseRepository.saveExercise(ref.read(sessionProvider).id!,body);
+    Map<String,dynamic> responseBody =  await exerciseRepository.saveExercise(ref.read(sessionProvider).id!, body);
     // 응답이 200 이 아닐 경우 처리 로직(스넥바 사용)
     if (!responseBody["success"]) {
       ScaffoldMessenger.of(mContext!).showSnackBar(
@@ -93,7 +92,8 @@ class AddFitnessDetailVM extends AutoDisposeFamilyNotifier<FitnessDetailModel?,i
     ListDetailOfDayVm vm2 = ref.read(listDetailOfDayProvider.notifier);
     vm2.init();
     // 페이지 이동
-    Navigator.popAndPushNamed(mContext, "");
+    Navigator.pop(mContext);
+    Navigator.pop(mContext);
   }
 }
 

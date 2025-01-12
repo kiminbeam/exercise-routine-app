@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_list_page/widgets/sliver_persistent_header_delegate.dart';
+import 'package:projectsampledata/data/global_data/global_data.dart';
+import 'package:projectsampledata/ui/pages/fitness/fitness_list_page/widgets/sliver_persistent_header_delegate.dart';
 
 import 'fitness_list_vm.dart';
 
@@ -151,12 +152,10 @@ class FitnessListBody extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: InkWell(
-                      // 이동할 페이지 Page자리에 넣으면 됨
-                      // onTap: () {
-                      //   Navigator.push(context, MaterialPageRoute(builder:
-                      //   (_)=> Page(filteredItems[index].fitnessId)
-                      //   ));
-                      // },
+                      onTap: () {
+                        GlobalData.fitnessId = fitnessListModel.fitnessItems[index].fitnessId;
+                        Navigator.pushNamed(context, "/add-fitness-page");
+                      },
                       child: Center(
                         child: Text(
                           fitnessItem.fitnessName,

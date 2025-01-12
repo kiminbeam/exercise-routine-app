@@ -21,8 +21,8 @@ class ListDetailOfDayInfoRepository {
   }
 
   // 요일 별 운동 계획에서 운동 삭제하도록 서버에 요청
-  Future<Map<String, dynamic>> deletePlan(int id) async {
-    Response response = await dio.delete("/plan/$id/delete");
+  Future<Map<String, dynamic>> deletePlan(int id, String weekName) async {
+    Response response = await dio.delete("/api/plan/$id/$weekName");
 
     Map<String, dynamic> body = response.data;
 

@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_detail_page/exercise_detail_vm.dart';
 
-class ExerciseDetailBody extends ConsumerWidget {
+import '../fitness_detail_vm.dart';
+
+class FitnessDetailBody extends ConsumerWidget {
   final id;
 
-  ExerciseDetailBody(this.id);
+  FitnessDetailBody(this.id);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ExerciseDetailModel? model = ref.watch(exerciseDetailProvider(id));
+    FitnessDetailModel? model = ref.watch(fitnessDetailProvider(id));
 
     if (model == null) {
       return Center(child: CircularProgressIndicator());

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projectsampledata/ui/common_widgets/custom_navigator.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/widgets/add_fitness_detail_body.dart';
+import 'package:projectsampledata/ui/pages/fitness/fitness_plus_page/widgets/add_fitness_detail_body.dart';
 
 class AddFitnessDetailPage extends StatelessWidget {
   final scaffoldKey = GlobalKey<ScaffoldState>();

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectsampledata/ui/pages/exercise/exercise_plus_page/add_fitness_detail_vm.dart';
+
+import '../add_fitness_detail_vm.dart';
 
 class AddFitnessDetailButton extends ConsumerWidget {
   final _fitnessId;
@@ -18,7 +19,7 @@ class AddFitnessDetailButton extends ConsumerWidget {
       onPressed: () {
         // 추가하기 동작
         print("작동하나?");
-        vm.AddExerciseDetail(_fitnessId, _dayOfWeek,  _exerciseSet.text.trim(), _repeat.text.trim(),  _weight.text.trim());
+        vm.AddFitnessDetail(_fitnessId, _dayOfWeek,  _exerciseSet.text.trim(), _repeat.text.trim(),  _weight.text.trim());
       },
       child: Text(
         '추가하기',
