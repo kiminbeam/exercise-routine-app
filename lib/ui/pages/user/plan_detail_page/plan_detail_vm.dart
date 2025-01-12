@@ -29,7 +29,7 @@ class PlanDetailModel {
       : planId = map["id"],
         day = map["day"],
         fitnessName = map["fitnessName"],
-        fitnessImg = map["imgUrl"],
+        fitnessImg = map["fitnessImgUrl"],
         fitnessContent = map["fitnessContent"],
         set = map["exerciseSet"],
         repeat = map["repeat"],

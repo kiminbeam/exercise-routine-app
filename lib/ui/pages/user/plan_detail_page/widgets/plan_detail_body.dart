@@ -6,6 +6,8 @@ import 'package:projectsampledata/ui/pages/user/plan_detail_page/widgets/plan_de
 import 'package:projectsampledata/ui/pages/user/plan_detail_page/widgets/plan_detail_goals.dart';
 import 'package:projectsampledata/ui/pages/user/plan_detail_page/widgets/plan_detail_page_button.dart';
 
+import '../../../fitness/fitness_plus_page/widgets/add_fitness_detail_image.dart';
+
 class PlanDetailBody extends ConsumerWidget {
   final int planId;
 
@@ -29,17 +31,10 @@ class PlanDetailBody extends ConsumerWidget {
               ],
             ),
             SizedBox(height: 15),
-            PlanDetailExerciseTitle(title: model!.fitnessName),
+            PlanDetailExerciseTitle(title: model.fitnessName),
             // 운동명 model.fitnessName
             SizedBox(height: 15),
-            SizedBox(
-              width: 300,
-              height: 300,
-              child: Image.asset(
-                "",
-                fit: BoxFit.cover,
-              ), // model.fitnessImg
-            ),
+            AddFitnessDetailImage(imagePath: '${model.fitnessImg}'),
             SizedBox(height: 10),
             PlanDetailExplain(explain: model!.fitnessContent),
             //model.fitnessContent로 가져와야 함
