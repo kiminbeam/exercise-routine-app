@@ -10,6 +10,7 @@ import 'package:projectsampledata/ui/pages/user/user_info_page/user_info_page.da
 import 'package:projectsampledata/ui/pages/user/user_info_update_page/user_info_update_page.dart';
 import 'package:projectsampledata/ui/pages/user/user_join_page/join_page.dart';
 import 'package:projectsampledata/ui/pages/user/user_login_page/login_page.dart';
+import 'package:projectsampledata/ui/pages/user/user_recode_page/user_recode_page.dart';
 import 'package:projectsampledata/ui/pages/week/week_detail_page/list_detail_of_day_page.dart';
 
 import '_core/constants/theme.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
           "/add-fitness-page": (context) => AddFitnessDetailPage(GlobalData.fitnessId, GlobalData.dayOfWeekName),
           "/just-read-fitness-page": (context) => FitnessDetailPage(GlobalData.fitnessId),
           "/fitness-list-page": (context) => FitnessListPage(GlobalData.isFitnessPlus),
+          "/user-recode-page": (context) => UserRecodePage(),
         },
         theme: ThemeData(appBarTheme: appBarTheme()) // 정의한 AppBarTheme 적용
         );

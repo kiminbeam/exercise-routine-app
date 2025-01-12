@@ -73,6 +73,21 @@ class CustomNavigation extends ConsumerWidget {
               const Divider(),
               TextButton(
                 onPressed: () {
+                  GlobalData.isFitnessPlus = false;
+                  Navigator.popAndPushNamed(context, "/user-recode-page");
+                },
+                child: const Text(
+                  "운동 기록 보기",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              const Divider(),
+              TextButton(
+                onPressed: () {
                   gvm.logout();
                 },
                 child: const Text(
@@ -85,6 +100,8 @@ class CustomNavigation extends ConsumerWidget {
                 ),
               ),
               const Divider(),
+
+
             ],
           ),
         ),

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:projectsampledata/ui/pages/main/main_page/main_page_vm.dart';
+import 'package:projectsampledata/ui/pages/user/user_recode_page/user_recode_vm.dart';
+import 'package:projectsampledata/ui/pages/user/user_recode_page/widgets/user_recode_body.dart';
 
 import '../../../common_widgets/custom_navigator.dart';
-import 'widgets/main_body.dart';
 
-class MainPage extends ConsumerWidget {
-
+class UserRecodePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final scaffoldKey = GlobalKey<ScaffoldState>();
-    MainPageModel? mainPageModel = ref.watch(mainPageProvider);
-    MainPageVM? mainPageVM = ref.watch(mainPageProvider.notifier);
-    if (mainPageModel == null || mainPageVM == null) {
+    var userRecodeModel = ref.watch(userRecodeProvider);
+
+    if (userRecodeModel == null) {
       return Center(child: CircularProgressIndicator());
     } else {
+
       return Scaffold(
         key: scaffoldKey,
         endDrawer: CustomNavigation(scaffoldKey),
@@ -22,8 +22,15 @@ class MainPage extends ConsumerWidget {
           backgroundColor: Colors.black,
           iconTheme: IconThemeData(color: Colors.white),
           title: const Text(
-            '주간 계획',
+            '운동 기록',
             style: TextStyle(color: Colors.white),
+          ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            color: Colors.white,
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
           centerTitle: true,
           bottom: const PreferredSize(
@@ -35,7 +42,7 @@ class MainPage extends ConsumerWidget {
             ),
           ),
         ),
-        body: MainPageBody(list: mainPageModel.weekInformationList, mainPageVM: mainPageVM),
+        body: UserRecodeBody(userRecodeModel: userRecodeModel),
       );
     }
   }
