@@ -89,11 +89,20 @@ class ListDetailOfDayVm extends AutoDisposeNotifier<ListDetailOfDayPageModel?> {
     // 가져온 해당 요일 계획 리스트를 상태에 등록
     state =
         ListDetailOfDayPageModel(planOfDayInfomationList: planOfDayInfoList);
-    print(state?.planOfDayInfomationList.toString()); // 데이터 확인 용 출력
   }
 
   // 운동 삭제
-  void remove(int id) {
+  void remove(int id) async {
+    Map<String, dynamic> responseBody =
+        await listDetailOfDayInfoRepository.deletePlan(id);
+
+    if (!responseBody["success"]) {
+      ScaffoldMessenger.of(mContext!).showSnackBar(
+        SnackBar(content: Text("삭제 요청 실패 : ${responseBody["errorMessage"]}")),
+      );
+      return;
+    }
+
     ListDetailOfDayPageModel model = state!;
     model.planOfDayInfomationList =
         model.planOfDayInfomationList.where((p) => p.id != id).toList();
