@@ -3,20 +3,26 @@ import 'package:projectsampledata/data/global_data/global_data.dart';
 
 import '../main_page_vm.dart';
 
-class MainBodyItem extends StatelessWidget {
-  final MainPageWeekInfo weekInformation;
+class MainBodyItem extends StatefulWidget {
+  final MainPageWeekInfo mainPageWeekInfo;
+  final MainPageVM mainPageVM;
+  MainBodyItem({required this.mainPageWeekInfo, required this.mainPageVM});
 
-  MainBodyItem({required this.weekInformation});
+  @override
+  _MainBodyItemState createState() => _MainBodyItemState();
+}
+
+class _MainBodyItemState extends State<MainBodyItem> {
+  bool isChecked = false;
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-    var (count, text) =
-        screenWidthCalculate(screenWidth, weekInformation.fitnessList);
+    var (count, text) = screenWidthCalculate(screenWidth, widget.mainPageWeekInfo.fitnessList);
 
     return InkWell(
       onTap: () {
-        GlobalData.dayOfWeekName = weekInformation.dayOfWeek;
+        GlobalData.dayOfWeekName = widget.mainPageWeekInfo.dayOfWeek;
         Navigator.pushNamed(context, "/list-detail-of-day-page");
       },
       child: Card(
@@ -27,15 +33,28 @@ class MainBodyItem extends StatelessWidget {
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              if (!(count == 1 && text == '등록된 정보가 없습니다'))
+                Checkbox(
+                  value: widget.mainPageWeekInfo.isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      widget.mainPageWeekInfo.isChecked = value!;
+                      // 여기에서 mainPageVM의 메서드를 호출합니다.
+                      GlobalData.dayOfWeekName = widget.mainPageWeekInfo.dayOfWeek;
+                      widget.mainPageVM.updateWeekStatus(value);
+                    });
+                  },
+                ),
+
               SizedBox(width: 20),
               Text(
-                "${weekInformation.dayOfWeek}",
+                "${widget.mainPageWeekInfo.dayOfWeek}",
                 style: TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.bold,
                     color: Colors.grey[700]),
               ),
-              const SizedBox(width: 40.0),
+              const SizedBox(width: 20.0),
               Expanded(
                 child: Row(
                   children: [
@@ -61,24 +80,28 @@ class MainBodyItem extends StatelessWidget {
 
   (int, String) screenWidthCalculate(
       double screenWidth, List<String> fitnessList) {
-    int maxPrintAvailabe = ((screenWidth - 250) / 100 * 7).floor();
+    int maxPrintAvailable = ((screenWidth - 250) / 100 * 7).floor();
     String text = "";
     int count = 0;
     bool notOverFlow = true;
     for (int j = 0; j < fitnessList.length && notOverFlow; j++) {
       for (int i = 0; i < fitnessList[j].length; i++) {
         text = text + fitnessList[j][i];
-        if (text.length == maxPrintAvailabe) {
+        if (text.length == maxPrintAvailable) {
           notOverFlow = false;
           break;
         }
       }
       if (notOverFlow) {
         count++;
-        if (text.length + 2 < maxPrintAvailabe && j != fitnessList.length - 1) {
+        if (text.length + 2 < maxPrintAvailable && j != fitnessList.length - 1) {
           text = text + ", ";
         }
       }
+    }
+
+    if (text.isEmpty) {
+      text = "등록된 정보가 없습니다";
     }
 
     return (count, text);
@@ -86,7 +109,7 @@ class MainBodyItem extends StatelessWidget {
 
   Builder listSizeCheck(int printCount) {
     return Builder(builder: (context) {
-      if (weekInformation.fitnessList.length > printCount) {
+      if (widget.mainPageWeekInfo.fitnessList.length > printCount) {
         return Icon(Icons.more_horiz, size: 40.0, color: Colors.grey);
       }
       return SizedBox(
