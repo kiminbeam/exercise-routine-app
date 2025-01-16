@@ -30,7 +30,10 @@
 
 
 <br><br>
-https://www.youtube.com/watch?v=difnYipSIE0
+
+[![Watch the video](https://img.youtube.com/vi/difnYipSIE0/0.jpg)](https://www.youtube.com/watch?v=difnYipSIE0)
+
+
 
 <br><br>
 
