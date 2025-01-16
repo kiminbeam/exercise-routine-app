@@ -96,102 +96,107 @@ https://www.youtube.com/watch?v=difnYipSIE0
 ## 트러블슈팅
 <br><br>
 
-※ 미리 만든 커스텀 예외 클래스들은 html을 반환
+### 기존의 프로젝트와는 다르게 문법적인 문제가 다수 발생하였고 아래는 그 중 일부입니다.
+<br>
 
-1. json 응답을 원하는 자바 스크립트 비동기 요청이 다수 존재하였습니다.
-2. 위 요청에서 문제가 생겼을 때 json으로 응답하는 것이 아닌, 만들어놓은 커스텀 예외를 throw 하는 경우가 다수 있었습니다. (html이 반환됨)
-3. 1번의 경우 json 응답 또는 평문을 날려야만 정상적으로 작동하기 때문에 예외 발생 시 화면에 아무것도 나오지 않았습니다.
-4. 해당 내용의 원인을 모두 찾아 분석하고 수정 후 팀원들에게 해당 내용을 공유하였습니다.
+1. responseList를 FitnessListModel 타입으로 변환하려고 할 때 발생
+2. List<dynamic> 타입을 다운캐스팅하지 않고 바로 형을 변환하려고 하여 예외가 발생하였음
+3. 해당 타입을 전달 받은 후 직접 옮겨담는 로직을 추가하거나, 다운 캐스팅을 통해 예외 발생 수정
+4. 같은 예외가 발생한 팀원 다수 확인.
 
 <br><br>
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/40942f82-b80b-414e-9d26-088731c357ec" width="250">
+  <img src="https://github.com/user-attachments/assets/1996d5ad-71c3-4c70-9b9b-65d952182aba" width="800">
 
 </div>
 
 <br><br><br>
-위의 문제가 발생한 이유 : 예외 관련된 테스트가 제대로 진행되지 않았습니다.
+위의 문제가 발생한 이유 : <br>
+팀원들이 전체적으로 dart 문법에 아직 익숙하지 않았으며, 헷갈릴 수 있는 부분을 제가 따로 캐치해내지 못했습니다.
 
 <br>
 
-프로젝트 종료 이후 생각 : 문제에 대한 내용 공유 뿐만 아니라, 테스트를 더 철저하게 할 수 있도록 지시할 필요성이 있었지만 그렇게 하지 않고 내용만 공유했던 부분이 조금 아쉽게 느껴졌었습니다. 모두가 각자 직접 해결하였으면 모두에게 좀 더 도움이 되었을 것 같아 이런 부분들을 더 신경써서 프로젝트를 진행할 수 있도록 주의가 필요하다고 생각하였습니다.
-
+위의 문제에 대처한 방법 : 모든 팀원들을 각각 불러서 문제의 원인과 해결 방법을 하나씩 학습시켰습니다. <br>
+또한 어떤 부분에서 코드를 작성하기 어려워하는지 추가로 검토한 뒤, 개인별로 부족한 문법 내용을 추가로 알려주며 프로젝트를 진행하였습니다.
 <br><br>
 
 
 ## 느낀점
-<br><br>
-
-1. 팀장의 역할이 아주 중요하다 : <br>
-   기본적인 컨벤션, 업무 할당 및 지시, 커뮤니케이션 등 어느 하나라도 부족하다면 프로젝트를 제대로 끝내지 못 할 가능성이 높습니다.<br>
-   만약 잘 따라와주지 않는 팀원이 있을 경우 해당 상황에서 어떻게 처리를 해야할지 미리 생각해두는 편이 좋을 것 같습니다.
-<br><br>
-
-2. 규칙은 처음에는 따라가기 불편하지만 시간이 지나면 왜 규칙이 생겼는지 알게 된다 : <br>
-   단순한 로직을 구현하더라도 Controller, Service, Repository 등 각 역할에 맞게 구현하고, 반환할 때 DTO를 반드시 반환하게 하는 등 <br>
-   이런 규칙들은 기존에 몸에 배지 않은 사람에게는 불편할 수 있습니다.<br>
-   저도 그런 사람들 중 하나였지만, 이번에 제대로 컨벤션을 지켜서 개발을 진행해보니 가독성도 좋아지고 특히 문제가 발생했을 때 디버깅을 하는 과정이 엄청 빨라진 것을 느낄 수 있었습니다.
-<br><br>
-
-
-3. 소통이 중요하다 : <br>
-   프로젝트에 대한 잦은 커뮤니케이션은 결과적으로 프로젝트 진행 속도에 많은 영향을 끼쳤습니다.<br>
-   서로 잊어버릴 수 있는 부분을 소통을 통해 다시 상기하고, 개인 사정으로 인해 빠진 날이 있어도 프로젝트 작업에 큰 문제 없이 진행할 수 있었습니다.<br>
-   다만 기능이 제대로 동작하지 않는 부분들 중 소통을 더 자주하였다면 더 빨리 캐치할 수 있었던 부분도 존재했기 때문에 더 자주 소통하고 진행해야겠다는 생각을 가지게 되었습니다.
-
 <br>
-<br>
+
+1. 새로운 문법을 배울 때는 추가 내용을 메모한 뒤, 팀원들에게 따로 공유해주는 것이 좋다 : <br>
+   저를 포함하여 다른 팀원들도 새로운 문법을 정리하였으나, 이에 대해서 서로 공유하지는 않았습니다.
+   이를 제가 앞장서서 자료를 모은 뒤, 중복 내용을 제거한 통합 파일을 만들어 공유하였으면 프로젝트 진행 속도가 더 빨라지지 않았을까 생각합니다.
+<br><br>
+
+2. 소통이 중요하다 : <br>
+   위의 내용에서 추가적으로 파생되는 내용입니다.<br>
+   프로젝트 진행은 서로 잊어버릴 수 있는 부분을 소통과 공유가 있어야만 효율적으로 이루어질 수 있다는 생각이 확고해졌습니다. <br><br>
+
+3. 시간적 여유 부족으로 간단한 앱 프로젝트를 진행하였으나, 추후에 개인적으로 직접 원하는 어플을 만들어 보고 싶습니다. <br><br>
+
+   
+(번외). Flutter는 정말 쓰기 편하고, 신규 사용자가 사용하기에 직관적이다. <br>
+   원래 app을 어느정도 개발하려면 오랜 시간이 걸린다고 들었습니다.
+   하지만 학습을 1 ~ 2주 정도밖에 진행하지 않은 상태로도 플러터 프로젝트를 진행할 수 있었고, 이는 누구나 쉽게 쓸 수 있다는 것을 어느정도 증명하는 것 같습니다.
+   다만 아직까지 왜 사람들이 flutter를 선호하지 않는지에 대해서 의문점입니다.
+<br><br>
+
+
 
 
 ## 기타
 
 ---
 
-## 프로젝트 업무 관리
+## 협업 전략
 <br>
 
-- 업무 진행 과정은 업무 보드를 통해 관리하고 확인
+- 기존에 사용하였던 협업 전략에 추가로 내용을 보태여 팀원들에게 내용을 공유하였습니다.
 
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/fcc350f9-dd29-4561-8896-636f8a71fec4" width="800">
+  <img src="https://github.com/user-attachments/assets/58c328eb-a1d3-4a7f-b588-5e29c6c4d3e7" width="800">
 </div>
 
 <br><br><br>
 
-- 진행 중 어려웠던 부분은 한곳에 모아서 서로 공유할 수 있도록 관리
-  
+## DB 설계
+<br>
+
+- 팀 회의를 통해 엑셀을 이용하여 테이블을 구상하고 관리하였습니다.
+
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/f842822b-27c8-4d01-8edc-c0da6d2e37b9" width="800">
+  <img src="https://github.com/user-attachments/assets/65a3a439-ef08-4b5e-84c0-fb148f0a4c30" width="800">
 </div>
 <br><br>
 
-
-## 프로젝트 기간
-<br>
-
-- 2024년 12월 2일 ~ 2024년 12월 18일 (16일간)
-
-<br>
-<br>
-
 ## ERD
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/656f46cb-c897-4376-9022-ac4ab7292d2f" width="800">
+  <img src="https://github.com/user-attachments/assets/170a7b1f-56b3-49a3-b405-587d70ff0b9e" width="800">
 </div>
 <br>
 <br><br><br><br>
 
 
+## 프로젝트 기간
+<br>
+
+- 2024년 12월 30일 ~ 2025년 1월 13일 (약 2주)
+  
+<br>
+
 ## 기술 스택
+
 ### Backend
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
 <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
 ![Gradle](https://img.shields.io/badge/Gradle-02303A.svg?style=for-the-badge&logo=Gradle&logoColor=white)
 
 ### Frontend
-![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)
+![Riverpod](https://img.shields.io/badge/riverpod-%23000?style=for-the-badge&logo=riverpod&logoColor=white)
+![MVVM](https://img.shields.io/badge/mvvm-%2300C4B3.svg?style=for-the-badge&logo=mvvm&logoColor=white)
 
 ### IDE
 ![IntelliJ IDEA](https://img.shields.io/badge/IntelliJIDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
@@ -203,31 +208,12 @@ https://www.youtube.com/watch?v=difnYipSIE0
 ![Slack](https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white)
 
 ### 데이터베이스
-<img src="https://img.shields.io/badge/H2DB-31A8FF?style=for-the-badge&logo=H2DB&logoColor=white">
+![H2DB](https://img.shields.io/badge/H2DB-31A8FF?style=for-the-badge&logo=H2DB&logoColor=white)
+
 <br><br>
 
 
 
-
-
-### Dependencies
-```
-implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-implementation 'org.springframework.boot:spring-boot-starter-mustache'
-implementation 'org.springframework.boot:spring-boot-starter-security'
-implementation 'org.springframework.boot:spring-boot-starter-validation'
-implementation 'org.springframework.boot:spring-boot-starter-web'
-compileOnly 'org.projectlombok:lombok'
-developmentOnly 'org.springframework.boot:spring-boot-devtools'
-runtimeOnly 'com.h2database:h2'
-annotationProcessor 'org.projectlombok:lombok'
-testImplementation 'org.springframework.boot:spring-boot-starter-test'
-testImplementation 'org.springframework.security:spring-security-test'
-testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-implementation group: 'com.google.code.gson', name: 'gson', version: '2.11.0'
-implementation 'net.minidev:json-smart:2.4.1'
-```
-<br><br>
 
 
 
